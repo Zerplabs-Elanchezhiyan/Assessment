@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Styles/style.css">
+    <script src="../JS/script.js"></script>
+</head>
+<body>
+  <header class="form-header"><h1>Registration Form</h1></header>
+  <div class="form-container">
+    <form id="registerForm" name="RegisterForm" class="register-Form">
+      <div class="form-grid-container">
+      <div class="form-grid-item"><label for="name">Name</label></div>
+      <!-- Name -->
+      <div class="form-grid-item"><input class="input" type="text" id="name" name="name" onchange="validate()" required></div>
+      
+      <!-- Date of Birth -->
+      <div class="form-grid-item"><label for="dob">Date of Birth</label></div>
+      <div class="form-grid-item"><input class="input" type="date" id="dob" name="Date" onchange="validate()" required></div>
+      <!-- Phone Number -->
+      <div class="form-grid-item"><label for="phoneNumber">Phone Number</label></div>
+      <div class="form-grid-item"><input class="input" type="tel"  id="phoneNumber" name="phoneNumber" maxlength="10" pattern="[0-9]{10}" onchange="validate()"></div>
+      <!-- Email -->
+      <div class="form-grid-item"><label for="email">Email</label></div>
+      <div class="form-grid-item"><input class="input" type="email" id="email" name="email" onchange="validate()"><br></div>
+      <!-- Country -->
+      <div class="form-grid-item"><label for="country">Country</label></div>
+      <div class="form-grid-item"><select name="country" class="input" id="country" onchange="validate()">
+        <option value="India">India</option>
+        <option value="Pakisthan">Pakisthan</option>
+        <option value="China">China</option>
+        <option value="Nepal">Nepal</option>
+      </select></div>
+      <!-- Marital Status -->
+      <div class="form-grid-item" id="maritalStatusId">
+        <label  for="maritalStatus">Married/Single</label></div><div class="form-grid-item">
+          <input class="input" type="radio" id="Married" checked="true" name="maritalStatus">Yes<input type="radio" id="Single" name="maritalStatus">No
+      </div>
+      <!-- Picture for Profile -->
+      <div class="form-grid-item"><label for="img">Select picture</label></div>
+      <div class="form-grid-item"><input type="file" id="img" name="file" accept=".jpg,.jpeg" onchange="validate()"></div>
+      </div>
+    </form>
+    <input class="submit" type="button" id="submit" value="submit" onclick="submitFunction()" disabled></br>
+  </div>
+</body>
+</html>

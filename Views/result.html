@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    ,<link rel="stylesheet" href="../Styles/style.css">
+    <script src="../JS/script.js">  
+    </script>
+</head>
+<body onload="result()">
+    <form id="registerForm" name="RegisterForm" class="register-Form">
+        <div class="form-grid-container">
+        <div class="form-grid-item"><label for="name">Name</label></div>
+        <!-- Name -->
+        <div class="form-grid-item"><input class="input" type="text" id="name" name="name" readonly></div>
+        
+        <!-- Date of Birth -->
+        <div class="form-grid-item"><label for="dob">Date of Birth</label></div>
+        <div class="form-grid-item"><input class="input" type="date" id="dob" name="Date" readonly></div>
+        <!-- Phone Number -->
+        <div class="form-grid-item"><label for="phoneNumber">Phone Number</label></div>
+        <div class="form-grid-item"><input class="input" type="tel"  id="phoneNumber" name="phoneNumber" maxlength="10" pattern="[0-9]{10}" readonly></div>
+        <!-- Email -->
+        <div class="form-grid-item"><label for="email">Email</label></div>
+        <div class="form-grid-item"><input class="input" type="email" id="email" name="email" readonly><br></div>
+        <!-- Country -->
+        <div class="form-grid-item"><label for="country">Country</label></div>
+        <div class="form-grid-item"><select name="country" class="input" id="country" readonly>
+          <option value="India">India</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="China">China</option>
+          <option value="Nepal">Nepal</option>
+        </select></div>
+        <!-- Marital Status -->
+        <div class="form-grid-item" id="maritalStatusId">
+          <label  for="maritalStatus">Married/Single</label></div><div class="form-grid-item">
+            <input class="input" type="text" id="maritalStatus" name="maritalStatus">
+        </div>
+        <!-- Picture for Profile -->
+        <div class="form-grid-item"><label for="img">File</label></div>
+        <div class="form-grid-item"><input class="input" type="text" id="file" name="file" readonly></div>
+        </div>
+    </form>
+</body>
+</html>
