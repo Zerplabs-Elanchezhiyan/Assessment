@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="../styles/login.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <script src="../scripts/login.js"></script>
-    </head>
-    <body>
-        <div class="main">
-            <div class="header"><header class="heading"><h1>E Task Tracker</h1></header></div>
-            <div class="span-container">
-                <span class="login-form-container">
-                    <form id="login-form" name="login-form" class="login-Form" action="register.html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="../scripts/login.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <header class="heading">
+                <h1>E Task Tracker</h1>
+            </header>
+        </div>
+        <div class="span-container">
+            <span class="login-form-container">
+                    <form id="login-form" name="login-form" class="login-Form" action="index.html">
                         <div class="login-form-heading"><h1>Login</h1></div>
                         <div class="login-form-grid-container">
 
                             <div class="login-form-grid-item"><label for="userName">Username</label></div>
-                            <div class="login-form-grid-item"><input class="input" type="text" id="username"></div>
+                            <div class="login-form-grid-item"><input class="input" type="text" id="username" required></div>
 
                             <div class="login-form-grid-item"><label for="password">Password</label></div>
-                            <div class="login-form-grid-item"><input class="input" type="password" id="password"><i class="far fa-eye-slash" id="togglePassword" onclick="showPassword()"></i></div>
+                            <div class="login-form-grid-item"><input class="input" type="password" id="password" required><i class="far fa-eye-slash" id="togglePassword" 
+                                onclick="showPassword()"></i></div>
                             <div class="login-form-grid-tems"><a class="link" href="register.html">New User?</a></div>
                         </div>
-                        <div class="login-form-button"><input class="login-button" type="submit" value="Login"></div>
+                        <div class="login-form-button"><input class="login-button" type="submit" value="Login" > </div>
                         
                     </form>
                 </span>
-            </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

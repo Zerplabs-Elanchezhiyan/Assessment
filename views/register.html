@@ -20,7 +20,7 @@
         </div>
         <div class="span-container">
             <span class="register-form-container">
-                <form id="registerForm" name="RegisterForm" class="register-Form">
+                <form id="registerForm" name="RegisterForm" class="register-Form" action="/views/index.html">
                     <div class="form-grid-container">
                         <!-- Name -->
                         <div class="register-form-grid-item"><label for="name">Name</label></div>
@@ -28,10 +28,8 @@
                                 maxlength="20" required></div>
                         <!-- Email -->
                         <div class="register-form-grid-item"><label for="email">Email</label></div>
-                        <div class="register-form-grid-item"><input class="input" type="email" id="email" name="email" oninput="validate()"></div>
-                        <div class="requirement-container" id="email-requirement-container">
-                            <p>Your email is invalid</p>
-                        </div>
+                        <div class="register-form-grid-item"><input class="input" type="email" id="email" name="email"
+                                pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$"></div>
                         <!-- Phone Number -->
                         <div class="register-form-grid-item"><label for="phoneNumber">Phone Number</label></div>
                         <div class="register-form-grid-item"><input class="input" type="tel" id="phoneNumber"
@@ -39,7 +37,7 @@
                         <!-- Password -->
                         <div class="register-form-grid-item"><label for="password">Password</label></div>
                         <div class="register-form-grid-item"><input class="input" type="password" id="password"
-                                oninput="validity()">
+                                oninput="validate('password','password-requirement-container')" onchange="validate('confirmPassword','confirm-password-requirement-container')">
                             <i class="far fa-eye-slash icon-color-change" id="togglePassword"
                                 onclick="showPassword('password','togglePassword')"></i>
                         </div>
@@ -56,9 +54,8 @@
                         <!-- Confirm Password -->
                         <div class="register-form-grid-item"><label for="confirmPassword">Confirm Password</label></div>
                         <div class="register-form-grid-item"><input class="input" type="password" id="confirmPassword"
-                                maxlength="16"
-                                oninput="validate()"><i
-                                class="far fa-eye-slash icon-color-change" id="toggleConfirmPassword"
+                                maxlength="16" oninput="validate('confirmPassword','confirm-password-requirement-container')"><i class="far fa-eye-slash icon-color-change"
+                                id="toggleConfirmPassword"
                                 onclick="showPassword('confirmPassword','toggleConfirmPassword')"></i></div>
                         <div class="requirement-container" id="confirm-password-requirement-container">
                             <p>Your password must:</p>
@@ -71,7 +68,7 @@
                                 <li id="match">Must match the Password</li>
                             </ul>
                         </div>
-                        <input class="submit" type="button" id="register" value="Register" onclick="validate()"
+                        <input class="submit" type="submit" id="register" value="Register"
                             disabled>
                     </div>
 
