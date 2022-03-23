@@ -1,0 +1,80 @@
+body{
+    background-image: url("../background/bg.jpg");
+    background-size:auto;
+}
+
+/* .heading{
+  text-align: center;
+
+  color: white;
+} */
+.header{
+  text-align: center;
+  color: white;
+}
+.input{
+  width: auto;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.link{
+  color: white;
+  padding-top: 50px;
+}
+  
+.login-button{
+  width: auto;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form-button{
+  text-align: center;
+}
+
+
+
+.login-form-grid-container {
+display: inline-grid;
+grid-template-columns: auto auto;
+}
+
+.login-form-grid-item {
+  padding: 3%;
+  font-size: 100%;  
+  display: flex;
+  align-items: center;
+
+}
+.login-form-heading{
+  text-align: center;
+}
+.main{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.span-container{
+  color: white;
+  padding: 5% 7%;
+  border: radius 5%;
+  background-color: rgb(128, 128, 128,0.5);
+  display: flex;
+  width: max-content;
+  justify-content: center;
+
+}
+
+#togglePassword{
+  margin-left: -30px; 
+  cursor: pointer;
+  color: black;
+}

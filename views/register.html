@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="../scripts/register.js"></script>
+</head>
+
+<body>
+    <article class="body-article">
+        <div class="header">
+            <header class="heading">
+                <h1>E Task Tracker</h1>
+            </header>
+        </div>
+        <div class="span-container">
+            <span class="register-form-container">
+                <form id="registerForm" name="RegisterForm" class="register-Form">
+                    <div class="form-grid-container">
+                        <!-- Name -->
+                        <div class="register-form-grid-item"><label for="name">Name</label></div>
+                        <div class="register-form-grid-item"><input class="input" type="text" id="name" name="name"
+                                maxlength="20" required></div>
+                        <!-- Email -->
+                        <div class="register-form-grid-item"><label for="email">Email</label></div>
+                        <div class="register-form-grid-item"><input class="input" type="email" id="email" name="email" oninput="validate()"></div>
+                        <div class="requirement-container" id="email-requirement-container">
+                            <p>Your email is invalid</p>
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="register-form-grid-item"><label for="phoneNumber">Phone Number</label></div>
+                        <div class="register-form-grid-item"><input class="input" type="tel" id="phoneNumber"
+                                name="phoneNumber" maxlength="10" pattern="[0-9]{10}" required></div>
+                        <!-- Password -->
+                        <div class="register-form-grid-item"><label for="password">Password</label></div>
+                        <div class="register-form-grid-item"><input class="input" type="password" id="password"
+                                oninput="validity()">
+                            <i class="far fa-eye-slash icon-color-change" id="togglePassword"
+                                onclick="showPassword('password','togglePassword')"></i>
+                        </div>
+                        <div class="requirement-container" id="password-requirement-container">
+                            <p>Your password must:</p>
+                            <ul class="password-requirement">
+                                <li id="numberofcharacters">Must have atleast 8 characters</li>
+                                <li id="number">Must have atleast one number</li>
+                                <li id="symbol">Must have atleast one symbol</li>
+                                <li id="uppercase">Must have atleast one uppercase letter</li>
+                                <li id="lowercase">Must have atleast one lowercase letter</li>
+                            </ul>
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="register-form-grid-item"><label for="confirmPassword">Confirm Password</label></div>
+                        <div class="register-form-grid-item"><input class="input" type="password" id="confirmPassword"
+                                maxlength="16"
+                                oninput="validate()"><i
+                                class="far fa-eye-slash icon-color-change" id="toggleConfirmPassword"
+                                onclick="showPassword('confirmPassword','toggleConfirmPassword')"></i></div>
+                        <div class="requirement-container" id="confirm-password-requirement-container">
+                            <p>Your password must:</p>
+                            <ul class="password-requirement" id="confirm-password">
+                                <li id="numberofcharacters">Must have atleast 8 characters</li>
+                                <li id="number">Must have atleast one number</li>
+                                <li id="symbol">Must have atleast one symbol</li>
+                                <li id="uppercase">Must have atleast one uppercase letter</li>
+                                <li id="lowercase">Must have atleast one lowercase letter</li>
+                                <li id="match">Must match the Password</li>
+                            </ul>
+                        </div>
+                        <input class="submit" type="button" id="register" value="Register" onclick="validate()"
+                            disabled>
+                    </div>
+
+                </form>
+            </span>
+        </div>
+    </article>
+</body>
+
+</html>
