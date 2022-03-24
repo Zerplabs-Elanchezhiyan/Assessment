@@ -26,7 +26,7 @@ body {
 
 .link {
     color: white;
-    padding-top: 50px;
+    text-decoration: none;
 }
 
 .login-button {

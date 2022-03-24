@@ -37,7 +37,7 @@
                         <!-- Password -->
                         <div class="register-form-grid-item"><label for="password">Password</label></div>
                         <div class="register-form-grid-item"><input class="input" type="password" id="password"
-                                oninput="validate('password','password-requirement-container')" onchange="validate('confirmPassword','confirm-password-requirement-container')">
+                                oninput="validate('password','password-requirement-container');validate('confirmPassword','confirm-password-requirement-container')">
                             <i class="far fa-eye-slash icon-color-change" id="togglePassword"
                                 onclick="showPassword('password','togglePassword')"></i>
                         </div>
