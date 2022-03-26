@@ -35,20 +35,23 @@
             <h2>Create Task</h2>
 
             <!-- Project Module -->
-            <div class="project-module"><label for="project-module">Project module Name</label></div>
-            <div><input class="inputType " type="text" id="project-module" placeholder="Project Module" oninput="validate()" required></div>
+            <div class="project-module"><label for="project-module">Project Module Name</label></div>
+            <div>
+                <input class="inputType " type="text" id="project-module" placeholder="Project Module" maxlength="15" oninput="validate('project-module')" required>
+                <!-- <p class="error-feild">Feild is required</p> -->
+            </div>
 
             <!-- Task Name -->
             <div class="task-name"><label for="task-name">Task Name</label></div>
-            <div><input class="inputType" type="text" id="task-name" placeholder="Task name" maxlength="25" oninput="validate()" required></div>
+            <div><input class="inputType" type="text" id="task-name" placeholder="Task name" maxlength="25" oninput="validate('task-name')" required></div>
 
             <!-- Task Description -->
             <div class="task-description"><label for="task-description">Task Description</label></div>
-            <textarea class="inputType" id="task-description" name="task-description" rows="4 " cols="50 " maxlength="250" placeholder="Task description.... " oninput="validate()" required></textarea>
+            <textarea class="inputType" id="task-description" name="task-description" rows="4 " cols="50 " maxlength="250" placeholder="Task description.... " oninput="validate('task-description')" required></textarea>
 
             <!-- Project Members -->
             <div class="project-members"><label for="project-members ">Project Members</label></div>
-            <div><select multiple class="inputType" id="project-members" name="project-members" oninput="validate()" required>
+            <div><select multiple class="inputType" id="project-members" name="project-members" oninput="validate('project-members')" required>
                 <option value="member-1">Member - 1</option>
                 <option value="member-2">Member - 2</option>
                 <option value="member-3">Member - 3</option>
@@ -57,7 +60,7 @@
 
             <!-- Git Branch Link -->
             <div class="git-link"><label for="git-link">Git Branch Link</label></div>
-            <div><input class="inputType" type="url" id="git-link" placeholder="Git Branch Link" oninput="validate()" required></div>
+            <div><input class="inputType" type="url" id="git-link" placeholder="Git Branch Link" oninput="validate('git-link')" required></div>
 
             <!-- Project Files -->
             <div class="project-files"><label for="project-files">Project Files</label></div>
@@ -65,7 +68,7 @@
 
             <!-- Priority -->
             <div class="priority "><label for="priority">Priority</label></div>
-            <div><select class="inputType" id="priority" name="priority" oninput="validate()" required>
+            <div><select class="inputType" id="priority" name="priority" oninput="validate('priority')" required>
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>

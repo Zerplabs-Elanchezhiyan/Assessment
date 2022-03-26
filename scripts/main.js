@@ -19,11 +19,31 @@ function dateValidation(date) {
     }
 }
 
-function validate() {
-    if (document.forms[0].checkValidity()) {
-        document.getElementById('createTask').disabled = false
-    } else {
-        document.getElementById('createTask').disabled = true
+function validate(feildId) {
+    // if (document.forms[0].checkValidity()) {
+    //     document.getElementById('createTask').disabled = false
+    // } else {
+    //     document.getElementById('createTask').disabled = true
+    // }
+    var formElements = document.forms[0].elements
+    for (let index = 0; index < formElements.length; index++) {
+
+        var tag = document.createElement("p");
+        tag.className = 'error-feild'
+        if (formElements[index].validity.valueMissing) {
+            if (formElements[index].parentElement.getElementsByTagName('p')[0] == undefined && formElements[index].id == feildId) {
+
+                var text = document.createTextNode("Feild is required can't be empty");
+                tag.appendChild(text);
+                formElements[index].parentElement.appendChild(tag);
+                break;
+            }
+        } else {
+            if (formElements[index].id == feildId && formElements[index].parentElement.getElementsByTagName('p')[0] != undefined) {
+                formElements[index].parentElement.getElementsByTagName('p')[0].remove()
+            }
+        }
+
     }
 }
 
