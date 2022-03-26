@@ -31,7 +31,7 @@
     </div>
 
     <div class="task-form-container">
-        <form class="task-form ">
+        <form class="task-form" id="task-form">
             <h2>Create Task</h2>
 
             <!-- Project Module -->
@@ -81,7 +81,7 @@
 
             <!-- End Date -->
             <div class="end-date"><label for="end-date">End Date</label></div>
-            <div><input class="inputType" type="date" id="end-date" oninput="dateValidation('end-date')" disabled></div>
+            <div><input class="inputType" type="date" id="end-date" oninput="dateValidation('end-date')" disabled required></div>
 
             <!-- Create Task Button -->
             <div class="create-task-button-container "><input type="button" id="createTask" class="create-task-button " value="Create Task" onclick="send()" disabled></div>

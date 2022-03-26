@@ -24,8 +24,6 @@ function validate() {
         document.getElementById('createTask').disabled = false
     } else {
         document.getElementById('createTask').disabled = true
-        var array = document.forms[0].getElementsByTagName('input')
-        console.log(array);
     }
 }
 
@@ -40,6 +38,13 @@ function newTask() {
 }
 
 function send() {
-    var data = new FormData(document.forms[0])
-    console.log(data)
+    // var data = new FormData(document.forms[0])
+    // console.log(data)
+    var val = document.getElementById('task-form').elements;
+    console.log(val)
+    var obj = {}
+    for (let i = 0; i < val.length; i++) {
+        obj.val[i].id = val[i].value;
+    }
+    console.log(obj)
 }
