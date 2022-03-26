@@ -6,40 +6,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="/scripts/main.js"></script>
     <title>main</title>
 </head>
 
 <body>
-    <div class="task-form-div-container">
-        <div class="task-form-container">
-            <form class="task-form">
-                <h2>Create Task</h2>
-                <!-- Task Name -->
-                <div class="task-name"><label for="task-name">Task Name</label></div>
-                <div><input class="inputType" type="text" id="task-name"></div>
-                <!-- Task Description -->
-                <div class="task-description"><label for="task-description">Task Description</label></div>
-                <div><input class="inputType" type="text" id="task-description"></div>
-                <!-- Team Members -->
-                <div class="team-members"><label for="team-members">Team Members</label></div>
-                <div><input class="inputType" type="text" id="Team Members"></div>
-                <!-- Project Module -->
-                <div class="project-module"><label for="project-module">Project module Name</label></div>
-                <div><input class="inputType" type="text" id="project-module"></div>
-                <!-- Project Files -->
-                <div class="project-files"><label for="project-files">Drag and drop here</label></div>
-                <div><input class="inputType" type="text" id="project-files"></div>
-                <!-- Priority -->
-                <div class="priority"><label for="priority">Priority</label></div>
-                <div><input class="inputType" type="text" id="priority"></div>
-                <!-- Task Dependencies -->
-                <div class="task-dependencies"><label for="task-dependencies">Task Dependencies</label></div>
-                <div><input class="inputType" type="text" id="task-dependencies"></div>
-                <!-- Create Task Button -->
-                <div class="create-task-button-container"><input type="button" id="createTask" class="create-task-button" value="Create Task"></div>
-            </form>
-        </div>
+    <div class="topnav">
+        <a onclick="sidebar()"><i class=" fas fa-bars " id="btn "></i>
+        </a>
+        <a>Start</a>
+        <a>Project</a>
+        <a>Planning</a>
+        <a>Calendar</a>
+        <a>Team</a>
     </div>
+
+    <div class="sidebar" id="sidebar" onblur="sidebar()">
+        <a onclick="sidebar()">Close</a>
+        <a class="active">Dashboard</a>
+        <a>Settings</a>
+        <a>Contact</a>
+        <a>About</a>
+    </div>
+
+    <div class="task-form-container">
+        <form class="task-form ">
+            <h2>Create Task</h2>
+
+            <!-- Project Module -->
+            <div class="project-module"><label for="project-module">Project module Name</label></div>
+            <div><input class="inputType " type="text" id="project-module" placeholder="Project Module" oninput="validate()" required></div>
+
+            <!-- Task Name -->
+            <div class="task-name"><label for="task-name">Task Name</label></div>
+            <div><input class="inputType" type="text" id="task-name" placeholder="Task name" maxlength="25" oninput="validate()" required></div>
+
+            <!-- Task Description -->
+            <div class="task-description"><label for="task-description">Task Description</label></div>
+            <textarea class="inputType" id="task-description" name="task-description" rows="4 " cols="50 " maxlength="250" placeholder="Task description.... " oninput="validate()" required></textarea>
+
+            <!-- Project Members -->
+            <div class="project-members"><label for="project-members ">Project Members</label></div>
+            <div><select multiple class="inputType" id="project-members" name="project-members" oninput="validate()" required>
+                <option value="member-1">Member - 1</option>
+                <option value="member-2">Member - 2</option>
+                <option value="member-3">Member - 3</option>
+                <option value="member-4">Member - 4</option>
+            </select></div>
+
+            <!-- Git Branch Link -->
+            <div class="git-link"><label for="git-link">Git Branch Link</label></div>
+            <div><input class="inputType" type="url" id="git-link" placeholder="Git Branch Link" oninput="validate()" required></div>
+
+            <!-- Project Files -->
+            <div class="project-files"><label for="project-files">Project Files</label></div>
+            <div><input class="inputType" type="file" id="project-files"></div>
+
+            <!-- Priority -->
+            <div class="priority "><label for="priority">Priority</label></div>
+            <div><select class="inputType" id="priority" name="priority" oninput="validate()" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select></div>
+
+            <!-- Task Dependencies -->
+            <div class="task-dependencies"><label for="task-dependencies">Task Dependencies</label></div>
+            <div><input class="inputType" type="text" id="task-dependencies" placeholder="Dependencies"></div>
+
+            <!-- Start Date -->
+            <div class="start-date"><label for="start-date">Start Date</label></div>
+            <div><input class="inputType" type="date" id="start-date" onchange="dateValidation('start-date')"></div>
+
+            <!-- End Date -->
+            <div class="end-date"><label for="end-date">End Date</label></div>
+            <div><input class="inputType" type="date" id="end-date" oninput="dateValidation('end-date')" disabled></div>
+
+            <!-- Create Task Button -->
+            <div class="create-task-button-container "><input type="button" id="createTask" class="create-task-button " value="Create Task" onclick="send()" disabled></div>
+
+        </form>
+    </div>
+
+    <div class="new-task-container"><input type="button" class="new-task-button" id="new-task-button" onclick="newTask()" value="New Task"></div>
+
 </body>
 
 </html>
