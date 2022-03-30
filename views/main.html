@@ -5,94 +5,136 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/adf82fbd7e.js" crossorigin="anonymous"></script>
     <script src="/scripts/main.js"></script>
     <title>main</title>
 </head>
 
 <body>
-    <div class="topnav">
-        <a onclick="sidebar()"><i class=" fas fa-bars " id="btn "></i>
-        </a>
-        <a>Start</a>
-        <a>Project</a>
-        <a>Planning</a>
-        <a>Calendar</a>
-        <a>Team</a>
-    </div>
 
-    <div class="sidebar" id="sidebar" onblur="sidebar()">
-        <a onclick="sidebar()">Close</a>
-        <a class="active">Dashboard</a>
-        <a>Settings</a>
-        <a>Contact</a>
-        <a>About</a>
-    </div>
+    <div class="main-div">
 
-    <div class="task-form-container">
-        <form class="task-form" id="task-form">
-            <h2>Create Task</h2>
-
-            <!-- Project Module -->
-            <div class="project-module"><label for="project-module">Project Module Name</label></div>
+        <div class="topnav">
             <div>
-                <input class="inputType " type="text" id="project-module" placeholder="Project Module" maxlength="15" oninput="validate('project-module')" required>
-                <!-- <p class="error-feild">Feild is required</p> -->
+                <a onclick="sidebar()"><i class=" fas fa-bars " id="btn "></i></a>
+                <a>Start</a>
+                <a>Project</a>
+                <a>Planning</a>
+                <a>Calendar</a>
+                <a>Team</a>
             </div>
+            <div>
+                <a><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a><i class="fa-solid fa-circle-plus"></i></a>
+                <a><i class="fa-regular fa-folder"></i></a>
+                <a><i class="fa-regular fa-bell"></i></a>
+                <a><i class="fa-regular fa-circle-user user-icon"></i><i class="fa-solid fa-angle-down"></i></a>
+                <a></a>
+            </div>
+        </div>
 
-            <!-- Task Name -->
-            <div class="task-name"><label for="task-name">Task Name</label></div>
-            <div><input class="inputType" type="text" id="task-name" placeholder="Task name" maxlength="25" oninput="validate('task-name')" required></div>
+        <div class="sidebar" id="sidebar" onblur="sidebar()">
+            <a onclick="sidebar()">Close</a>
+            <a class="active">Dashboard</a>
+            <a>Settings</a>
+            <a>Contact</a>
+            <a>About</a>
+        </div>
 
-            <!-- Task Description -->
-            <div class="task-description"><label for="task-description">Task Description</label></div>
-            <textarea class="inputType" id="task-description" name="task-description" rows="4 " cols="50 " maxlength="250" placeholder="Task description.... " oninput="validate('task-description')" required></textarea>
+        <div class="new-task-form-container">
+            <div class="new-task-form">
+                <div class="new-task-form-header">
+                    <h2>Create Task</h2>
+                </div>
+                <div class="main-form">
+                    <form id="task-form">
+                        <!-- Project Module -->
+                        <div class="project-module"><label for="project-module">Project Module Name</label></div>
+                        <div><input class="inputType " type="text" id="project-module" placeholder="Project Module" maxlength="15" oninput="validate('project-module')" required></div>
 
-            <!-- Project Members -->
-            <div class="project-members"><label for="project-members ">Project Members</label></div>
-            <div><select multiple class="inputType" id="project-members" name="project-members" oninput="validate('project-members')" required>
-                <option value="member-1">Member - 1</option>
-                <option value="member-2">Member - 2</option>
-                <option value="member-3">Member - 3</option>
-                <option value="member-4">Member - 4</option>
-            </select></div>
+                        <!-- Task Name -->
+                        <div class="task-name"><label for="task-name">Task Name</label></div>
+                        <div><input class="inputType" type="text" id="task-name" placeholder="Task name" maxlength="25" oninput="validate('task-name')" required></div>
 
-            <!-- Git Branch Link -->
-            <div class="git-link"><label for="git-link">Git Branch Link</label></div>
-            <div><input class="inputType" type="url" id="git-link" placeholder="Git Branch Link" oninput="validate('git-link')" required></div>
+                        <!-- Task Description -->
+                        <div class="task-description"><label for="task-description">Task Description</label></div>
+                        <textarea class="inputType" id="task-description" name="task-description" rows="4 " cols="50 " maxlength="250" placeholder="Task description.... " oninput="validate('task-description')" required></textarea>
 
-            <!-- Project Files -->
-            <div class="project-files"><label for="project-files">Project Files</label></div>
-            <div><input class="inputType" type="file" id="project-files"></div>
+                        <!-- Project Members -->
+                        <div class="project-members"><label for="project-members ">Project Members</label></div>
+                        <div><select multiple class="inputType" id="project-members" name="project-members" oninput="validate('project-members')" required>
+                            <option value="member-1">Member - 1</option>
+                            <option value="member-2">Member - 2</option>
+                            <option value="member-3">Member - 3</option>
+                            <option value="member-4">Member - 4</option>
+                        </select></div>
 
-            <!-- Priority -->
-            <div class="priority "><label for="priority">Priority</label></div>
-            <div><select class="inputType" id="priority" name="priority" oninput="validate('priority')" required>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select></div>
+                        <!-- Git Branch Link -->
+                        <div class="git-link"><label for="git-link">Git Branch Link</label></div>
+                        <div><input class="inputType" type="url" id="git-link" placeholder="Git Branch Link" oninput="validate('git-link')" required></div>
 
-            <!-- Task Dependencies -->
-            <div class="task-dependencies"><label for="task-dependencies">Task Dependencies</label></div>
-            <div><input class="inputType" type="text" id="task-dependencies" placeholder="Dependencies"></div>
+                        <!-- Project Files -->
+                        <div class="project-files"><label for="project-files">Project Files</label></div>
+                        <div><input class="inputType" type="file" id="project-files"></div>
 
-            <!-- Start Date -->
-            <div class="start-date"><label for="start-date">Start Date</label></div>
-            <div><input class="inputType" type="date" id="start-date" onchange="dateValidation('start-date')"></div>
+                        <!-- Priority -->
+                        <div class="priority "><label for="priority">Priority</label></div>
+                        <div><select class="inputType" id="priority" name="priority" oninput="validate('priority')" required>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select></div>
 
-            <!-- End Date -->
-            <div class="end-date"><label for="end-date">End Date</label></div>
-            <div><input class="inputType" type="date" id="end-date" oninput="dateValidation('end-date')" disabled required></div>
+                        <!-- Task Dependencies -->
+                        <div class="task-dependencies"><label for="task-dependencies">Task Dependencies</label></div>
+                        <div><input class="inputType" type="text" id="task-dependencies" placeholder="Dependencies"></div>
 
-            <!-- Create Task Button -->
-            <div class="create-task-button-container "><input type="button" id="createTask" class="create-task-button " value="Create Task" onclick="send()" disabled></div>
+                        <!-- Start Date -->
+                        <div class="start-date"><label for="start-date">Start Date</label></div>
+                        <div><input class="inputType" type="date" id="start-date" onfocus="setMax('start-date')" oninput="dateValidation()"></div>
 
-        </form>
+                        <!-- End Date -->
+                        <div class="end-date"><label for="end-date">End Date</label></div>
+                        <div><input class="inputType" type="date" id="end-date" onfocus="setMax('end-date')" disabled required></div>
+
+                    </form>
+                </div>
+                <div>
+                    <!-- Create Task Button -->
+                    <div class="create-task-button-container">
+                        <input type="button" id="createTask" class="create-task-button" value="Create" onclick="send()" disabled>
+                        <input type="button" id="cancelTask" class="create-task-button" value="Cancel" onclick="newTask()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="heading">
+            <h1>Tasks Board</h1>
+        </div>
+
+        <div class="board-nav">
+            <div class="">
+                <span>Start</span>
+                <span>Project</span>
+                <span>Planning</span>
+                <span>Calendar</span>
+                <span>Team</span>
+            </div>
+        </div>
+        <hr>
+
+        <div class="new-task-container">
+            <button type="submit" class="new-task-button" id="new-task-button" onclick="newTask()" value="New task">
+            <i class="fa-solid fa-circle-plus margin"></i>
+            <span class="button-text">New Task</span>
+        </button>
+        </div>
+
     </div>
-
-    <div class="new-task-container"><input type="button" class="new-task-button" id="new-task-button" onclick="newTask()" value="New Task"></div>
 
 </body>
 
