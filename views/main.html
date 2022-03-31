@@ -105,7 +105,7 @@
                 <div>
                     <!-- Create Task Button -->
                     <div class="create-task-button-container">
-                        <input type="button" id="createTask" class="create-task-button" value="Create" onclick="send()" disabled>
+                        <input type="button" id="createTask" class="create-task-button" value="Create" onclick="send()">
                         <input type="button" id="cancelTask" class="create-task-button" value="Cancel" onclick="newTask()">
                     </div>
                 </div>
@@ -117,15 +117,318 @@
         </div>
 
         <div class="board-nav">
-            <div class="">
-                <span>Start</span>
-                <span>Project</span>
-                <span>Planning</span>
-                <span>Calendar</span>
-                <span>Team</span>
+            <div class="board-navigation">
+                <span>Overview</span>
+                <span>Tasks</span>
+                <span>Milestones</span>
+                <span>Messages</span>
+                <span>Files</span>
+                <span>Time</span>
+                <span>Comments</span>
+                <span>People</span>
+            </div>
+            <div class="board-view">
+                <span style="display: flex;"><i class="fas fa-expand user-icon"></i><div>Full Screen</div></span>
+                <span style="display: flex;"><i class="fa-solid fa-filter user-icon"></i><div>Filters</div></span>
             </div>
         </div>
         <hr>
+
+        <div class="board">
+
+            <div class="ticket-holder">
+                <!-- Status Name and Button -->
+                <div class="status-name-and-button">
+                    <h3 class="status-name">To Do</h3>
+                    <div>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        <button class="status-button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <hr>
+                <!-- ticket scroll -->
+                <div class="ticket-scroll">
+                    <!-- Tickets -->
+                    <div class="ticket">
+                        <div class="ticket-task-name-and-setting">
+                            <span class="task-name">Task Name</span>
+                            <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        </div>
+
+                        <div class="ticket-task-description">
+                            <span class="task-description">Task Description</span>
+                        </div>
+                        <div class="ticket-member-count-and-priority">
+                            <div class="member-count">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Member count</span>
+                            </div>
+                            <div class="priority">
+                                <span>Priority</span>
+                            </div>
+                        </div>
+                        <div class="ticket-due-date">
+                            <span>Due Date</span>
+                        </div>
+                    </div>
+
+                    <!-- Tickets -->
+                    <div class="ticket">
+                        <div class="ticket-task-name-and-setting">
+                            <span class="task-name">Task Name</span>
+                            <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        </div>
+
+                        <div class="ticket-task-description">
+                            <span class="task-description">Task Description</span>
+                        </div>
+                        <div class="ticket-member-count-and-priority">
+                            <div class="member-count">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Member count</span>
+                            </div>
+                            <div class="priority">
+                                <span>Priority</span>
+                            </div>
+                        </div>
+                        <div class="ticket-due-date">
+                            <span>Due Date</span>
+                        </div>
+                    </div>
+
+                    <!-- Tickets -->
+                    <div class="ticket">
+                        <div class="ticket-task-name-and-setting">
+                            <span class="task-name">Task Name</span>
+                            <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        </div>
+
+                        <div class="ticket-task-description">
+                            <span class="task-description">Task Description</span>
+                        </div>
+                        <div class="ticket-member-count-and-priority">
+                            <div class="member-count">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Member count</span>
+                            </div>
+                            <div class="priority">
+                                <span>Priority</span>
+                            </div>
+                        </div>
+                        <div class="ticket-due-date">
+                            <span>Due Date</span>
+                        </div>
+                    </div>
+
+                    <!-- Tickets -->
+                    <div class="ticket">
+                        <div class="ticket-task-name-and-setting">
+                            <span class="task-name">Task Name</span>
+                            <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        </div>
+
+                        <div class="ticket-task-description">
+                            <span class="task-description">Task Description</span>
+                        </div>
+                        <div class="ticket-member-count-and-priority">
+                            <div class="member-count">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Member count</span>
+                            </div>
+                            <div class="priority">
+                                <span>Priority</span>
+                            </div>
+                        </div>
+                        <div class="ticket-due-date">
+                            <span>Due Date</span>
+                        </div>
+                    </div>
+
+                    <!-- Tickets -->
+                    <div class="ticket">
+                        <div class="ticket-task-name-and-setting">
+                            <span class="task-name">Task Name</span>
+                            <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        </div>
+
+                        <div class="ticket-task-description">
+                            <span class="task-description">Task Description</span>
+                        </div>
+                        <div class="ticket-member-count-and-priority">
+                            <div class="member-count">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Member count</span>
+                            </div>
+                            <div class="priority">
+                                <span>Priority</span>
+                            </div>
+                        </div>
+                        <div class="ticket-due-date">
+                            <span>Due Date</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="new-ticket">
+                    <i class="fa-solid fa-plus"></i>
+                    <p class="add-task">Add Task</p>
+                </div>
+            </div>
+
+            <div class="ticket-holder">
+                <!-- Status Name and Button -->
+                <div class="status-name-and-button">
+                    <h3 class="status-name">To Do</h3>
+                    <div>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        <button class="status-button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Tickets -->
+                <div class="ticket">
+                    <div class="ticket-task-name-and-setting">
+                        <span class="task-name">Task Name</span>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+
+                    <div class="ticket-task-description">
+                        <span class="task-description">Task Description</span>
+                    </div>
+                    <div class="ticket-member-count-and-priority">
+                        <div class="member-count">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Member count</span>
+                        </div>
+                        <div class="priority">
+                            <span>Priority</span>
+                        </div>
+                    </div>
+                    <div class="ticket-due-date">
+                        <span>Due Date</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ticket-holder">
+                <!-- Status Name and Button -->
+                <div class="status-name-and-button">
+                    <h3 class="status-name">To Do</h3>
+                    <div>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        <button class="status-button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Tickets -->
+                <div class="ticket">
+                    <div class="ticket-task-name-and-setting">
+                        <span class="task-name">Task Name</span>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+
+                    <div class="ticket-task-description">
+                        <span class="task-description">Task Description</span>
+                    </div>
+                    <div class="ticket-member-count-and-priority">
+                        <div class="member-count">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Member count</span>
+                        </div>
+                        <div class="priority">
+                            <span>Priority</span>
+                        </div>
+                    </div>
+                    <div class="ticket-due-date">
+                        <span>Due Date</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ticket-holder">
+                <!-- Status Name and Button -->
+                <div class="status-name-and-button">
+                    <h3 class="status-name">To Do</h3>
+                    <div>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        <button class="status-button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Tickets -->
+                <div class="ticket">
+                    <div class="ticket-task-name-and-setting">
+                        <span class="task-name">Task Name</span>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+
+                    <div class="ticket-task-description">
+                        <span class="task-description">Task Description</span>
+                    </div>
+                    <div class="ticket-member-count-and-priority">
+                        <div class="member-count">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Member count</span>
+                        </div>
+                        <div class="priority">
+                            <span>Priority</span>
+                        </div>
+                    </div>
+                    <div class="ticket-due-date">
+                        <span>Due Date</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ticket-holder">
+                <!-- Status Name and Button -->
+                <div class="status-name-and-button">
+                    <h3 class="status-name">To Do</h3>
+                    <div>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                        <button class="status-button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Tickets -->
+                <div class="ticket">
+                    <div class="ticket-task-name-and-setting">
+                        <span class="task-name">Task Name</span>
+                        <button class="status-button"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+
+                    <div class="ticket-task-description">
+                        <span class="task-description">Task Description</span>
+                    </div>
+                    <div class="ticket-member-count-and-priority">
+                        <div class="member-count">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Member count</span>
+                        </div>
+                        <div class="priority">
+                            <span>Priority</span>
+                        </div>
+                    </div>
+                    <div class="ticket-due-date">
+                        <span>Due Date</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
 
         <div class="new-task-container">
             <button type="submit" class="new-task-button" id="new-task-button" onclick="newTask()" value="New task">
