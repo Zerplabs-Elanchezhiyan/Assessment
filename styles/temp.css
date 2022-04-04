@@ -13,7 +13,8 @@
 .board {
     display: flex;
     height: 100%;
-    overflow-x: scroll;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 .board-nav {
@@ -70,6 +71,12 @@ body {
 .buttons {
     margin: 10px;
     padding: 10px;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+.buttons:hover {
+    cursor: pointer;
 }
 
 .create-task-button {
@@ -181,7 +188,7 @@ html {
     height: 100%;
 }
 
-.new-task-form-header h2 {
+.form-heading {
     text-align: center;
     padding: 35px;
 }
@@ -241,17 +248,13 @@ html {
 }
 
 .ticket {
-    background-color: #222831;
+    background-color: #393e46;
     margin: 15px;
     padding: 15px;
     border-radius: 5px;
+    height: fit-content;
     flex-shrink: 0;
-}
-
-.ticket-task-description {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 350px;
 }
 
 .ticket-holder {
@@ -298,6 +301,11 @@ html {
 }
 
 .ticket-task-description {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    justify-content: space-between;
     padding: 10px;
 }
 
@@ -309,7 +317,7 @@ html {
 
 .ticket-due-date {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     padding: 10px;
 }
 
@@ -358,11 +366,16 @@ html {
     outline: 1px solid slategrey;
 }
 
-.gender-label {
-    margin: 10px;
-    padding: 10px;
-}
-
 .radio {
     margin: 15px;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.green {
+    background-color: green;
+    color: white;
 }

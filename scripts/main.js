@@ -74,23 +74,10 @@ function send() {
     console.log(string)
     localStorage.setItem("tasks", string)
     newTask();
-    // var responseObject = new XMLHttpRequest();
-    // responseObject.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         var response = JSON.parse(this.responseText);
-    //         responseParse(response);
-    //     }
-    // };
-    // responseObject.open("GET", "../files/data.json", true);
-    // responseObject.send();
+}
 
-    // function responseParse(response) {
-    //     var i;
-    //     var form = document.forms[0].elements;
-    //     for (i = 0; i < form.length; i++) {
-    //         console.log(response);
-    //         var idValue = form[i].id
-    //         form[i].value = response.tasks[2][idValue]
-    //     }
-    // }
+function addStatus() {
+    var status = document.getElementsByClassName("ticket-holder")[0].cloneNode(true)
+    var board = document.getElementsByClassName('board')[0]
+    board.insertBefore(status, document.getElementById('addStatus'))
 }

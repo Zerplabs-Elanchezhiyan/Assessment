@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../styles/temp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/adf82fbd7e.js" crossorigin="anonymous"></script>
+    <script src="/scripts/temp.js"></script>
+    <link type="text/css" rel="stylesheet" href="jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="jsgrid-theme.min.css" />
+    <script type="text/javascript" src="/plugins/jsgrid.min.js"></script>
+    <title>CRUD</title>
+</head>
+
+<body onload="loadData()">
+
+    <div class="main-div">
+
+        <div class="topnav">
+            <div>
+                <a onclick="sidebar()"><i class=" fas fa-bars " id="btn "></i></a>
+                <a>Start</a>
+                <a>Project</a>
+                <a>Planning</a>
+                <a>Calendar</a>
+                <a>Team</a>
+                <a>CRUD</a>
+            </div>
+            <div>
+                <a><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a><i class="fa-solid fa-circle-plus"></i></a>
+                <a><i class="fa-regular fa-folder"></i></a>
+                <a><i class="fa-regular fa-bell"></i></a>
+                <a><i class="fa-regular fa-circle-user user-icon"></i><i class="fa-solid fa-angle-down"></i></a>
+                <a></a>
+            </div>
+        </div>
+
+        <div class="sidebar" id="sidebar" onblur="sidebar()">
+            <a onclick="sidebar()">Close</a>
+            <a href="main.html">Home</a>
+            <a>Dashboard</a>
+            <a>Settings</a>
+            <a>Contact</a>
+            <a>About</a>
+        </div>
+
+        <div class="new-task-form-container">
+            <div class="new-task-form">
+                <div class="new-task-form-header">
+                    <h2 class="form-heading">Create Data</h2>
+                </div>
+                <div class="main-form">
+                    <form id="task-form">
+
+                        <!--ID -->
+                        <div class="id-label"><label for="ID">ID</label></div>
+                        <div><input class="inputType" type="text" id="id" maxlength="15" disabled></div>
+
+                        <!--Name -->
+                        <div class="name-label"><label for="name">Name</label></div>
+                        <div><input class="inputType" type="text" id="name" maxlength="15" required></div>
+
+                        <!-- Gender -->
+                        <div class="gender-label"><label for="task-name">Gender</label></div>
+                        <div><input class="radio" type="radio" id="gender" name="gender" value="male" checked>Male<input class="radio" type="radio" id="gender" name="gender" value="female">Female</div>
+
+                        <!-- Email -->
+                        <div class="email-label"><label for="email">Email</label></div>
+                        <div><input class="inputType" type="text" id="email" maxlength="25" required></div>
+
+
+                        <!--Status -->
+                        <div class="status-label"><label for="status">Status</label></div>
+                        <div><input class="radio" type="radio" id="status" name="status" value="active" checked>Active<input class="radio" type="radio" id="status" name="status" value="inactive">Inactive</div>
+                    </form>
+                </div>
+                <div>
+                    <!-- Create Task Button -->
+                    <div class="create-task-button-container">
+                        <input type="button" id="createTask" class="create-task-button green" value="Create" onclick="crud()">
+                        <input type="reset" form="task-form" id="cancelTask" class="create-task-button red" value="Cancel" onclick="newTask()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="heading">
+            <h1>Tasks Board</h1>
+        </div>
+
+        <div class="board-nav">
+            <div class="board-navigation">
+                <span>Overview</span>
+                <span>Tasks</span>
+                <span>Milestones</span>
+                <span>Messages</span>
+                <span>Files</span>
+                <span>Time</span>
+                <span>Comments</span>
+                <span>People</span>
+            </div>
+            <div class="board-view">
+                <span style="display: flex;"><i class="fas fa-expand user-icon"></i><div>Board View</div></span>
+                <span style="display: flex;"><i class="fas fa-list user-icon"></i><div>List View</div></span>
+            </div>
+        </div>
+        <hr>
+
+        <div class="board">
+
+            <!-- Tickets -->
+            <div class="ticket">
+
+                <div class="ticket-task-name-and-setting">
+                    <label for="id">Id:</label>
+                    <span class="task-id" id="id">ID</span>
+                </div>
+
+                <div class="ticket-task-name-and-setting">
+                    <label for="name">Name:</label>
+                    <span class="task-name" id="name">Name</span>
+                </div>
+
+                <div class="ticket-task-description">
+                    <label for="email">Email:</label>
+                    <span class="task-email" id="email">Email</span>
+                </div>
+
+                <div class="ticket-due-date">
+                    <label for="gender">Gender:</label>
+                    <span id="gender">Gender</span>
+                </div>
+                <div class="ticket-due-date">
+                    <label for="status">Status:    </label>
+                    <span id="status">Status</span>
+                </div>
+                <div class="ticket-footer">
+                    <button class="buttons green" id="edit" onclick="editData(this)">Edit</button>
+                    <button class="buttons red" id="delete" onclick="crud(this)">Delete</button>
+                </div>
+
+
+            </div>
+
+            <div class="new-task-container">
+                <button type="button" class="new-task-button" id="new-task-button" onclick="newTask(this)" value="New task"><i class="fa-solid fa-circle-plus margin"></i><span class="button-text">New Task</span></button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
