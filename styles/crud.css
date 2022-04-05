@@ -63,7 +63,6 @@
 body {
     display: flex;
     background-color: #222831;
-    color: #eeeeed;
     font-family: "Roboto", sans-serif;
     height: 100%;
 }
@@ -162,13 +161,13 @@ html {
     cursor: pointer;
 }
 
-.new-task-container {
+.new-task-button-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
 }
 
-.new-task-form {
+.form {
     border-radius: 10px;
     padding: 25px 80px;
     width: 30%;
@@ -177,7 +176,7 @@ html {
     overflow: hidden;
 }
 
-.new-task-form-container {
+.form-container {
     display: none;
     position: absolute;
     top: 0;
@@ -255,6 +254,7 @@ html {
     height: fit-content;
     flex-shrink: 0;
     width: 350px;
+    color: #eeeeed;
 }
 
 .ticket-holder {

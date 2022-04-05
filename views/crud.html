@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="../styles/temp.css">
+    <link rel="stylesheet" href="../styles/crud.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://kit.fontawesome.com/adf82fbd7e.js" crossorigin="anonymous"></script>
-    <script src="/scripts/temp.js"></script>
-    <link type="text/css" rel="stylesheet" href="jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="jsgrid-theme.min.css" />
+    <script src="/scripts/crud.js"></script>
+    <link type="text/css" rel="stylesheet" href="/plugins/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="/plugins/jsgrid-theme.min.css" />
     <script type="text/javascript" src="/plugins/jsgrid.min.js"></script>
+
     <title>CRUD</title>
 </head>
 
@@ -49,9 +51,9 @@
             <a>About</a>
         </div>
 
-        <div class="new-task-form-container">
-            <div class="new-task-form">
-                <div class="new-task-form-header">
+        <div class="form-container">
+            <div class="form">
+                <div class="form-header">
                     <h2 class="form-heading">Create Data</h2>
                 </div>
                 <div class="main-form">
@@ -105,13 +107,13 @@
                 <span>People</span>
             </div>
             <div class="board-view">
-                <span style="display: flex;"><i class="fas fa-expand user-icon"></i><div>Board View</div></span>
-                <span style="display: flex;"><i class="fas fa-list user-icon"></i><div>List View</div></span>
+                <span style="display: flex;" onclick="boardView()"><i class="fas fa-expand user-icon"></i><div>Board View</div></span>
+                <span style="display: flex;" onclick="listView()"><i class="fas fa-list user-icon"></i><div>List View</div></span>
             </div>
         </div>
         <hr>
 
-        <div class="board">
+        <div id="boardView" class="board">
 
             <!-- Tickets -->
             <div class="ticket">
@@ -147,11 +149,15 @@
 
             </div>
 
-            <div class="new-task-container">
-                <button type="button" class="new-task-button" id="new-task-button" onclick="newTask(this)" value="New task"><i class="fa-solid fa-circle-plus margin"></i><span class="button-text">New Task</span></button>
-            </div>
-
         </div>
+
+        <div id="listView" class="list-view">
+        </div>
+
+    </div>
+
+    <div class="new-task-button-container">
+        <button type="button" class="new-task-button" id="new-task-button" onclick="newTask(this)" value="New task"><i class="fa-solid fa-circle-plus margin"></i>New Task</button>
     </div>
 
 </body>
