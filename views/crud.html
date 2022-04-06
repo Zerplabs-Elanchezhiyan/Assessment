@@ -11,18 +11,18 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://kit.fontawesome.com/adf82fbd7e.js" crossorigin="anonymous"></script>
     <script src="/scripts/crud.js"></script>
-    <link type="text/css" rel="stylesheet" href="/plugins/jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="/plugins/jsgrid-theme.min.css" />
-    <script type="text/javascript" src="/plugins/jsgrid.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/plugins/jsgrid/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="/plugins/jsgrid/jsgrid-theme.min.css" />
+    <script type="text/javascript" src="/plugins/jsgrid/jsgrid.min.js"></script>
 
     <title>CRUD</title>
 </head>
 
 <body onload="loadData()">
 
-    <div class="main-div">
+    <div class="main-div" id="mainDiv">
 
-        <div class="topnav">
+        <div class="topnav" id="topNav">
             <div>
                 <a onclick="sidebar()"><i class=" fas fa-bars " id="btn "></i></a>
                 <a>Start</a>
@@ -51,7 +51,7 @@
             <a>About</a>
         </div>
 
-        <div class="form-container">
+        <div class="form-container" id="formContainer">
             <div class="form">
                 <div class="form-header">
                     <h2 class="form-heading">Create Data</h2>
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <div class="heading">
+        <div class="main-heading" id="mainHeading">
             <h1>Tasks Board</h1>
         </div>
 
@@ -142,8 +142,8 @@
                     <span id="status">Status</span>
                 </div>
                 <div class="ticket-footer">
-                    <button class="buttons green" id="edit" onclick="editData(this)">Edit</button>
-                    <button class="buttons red" id="delete" onclick="crud(this)">Delete</button>
+                    <button class="buttons green" id="edit" onclick="loadFormdata(this)">Edit</button>
+                    <button class="buttons red" id="delete" onclick="crud(this.parentElement.parentElement)">Delete</button>
                 </div>
 
 
@@ -151,13 +151,13 @@
 
         </div>
 
-        <div id="listView" class="list-view">
+        <div id="listView" class="list-view" style="display: none;">
         </div>
 
     </div>
 
     <div class="new-task-button-container">
-        <button type="button" class="new-task-button" id="new-task-button" onclick="newTask(this)" value="New task"><i class="fa-solid fa-circle-plus margin"></i>New Task</button>
+        <button type="button" class="new-task-button" id="newTaskButton" onclick="newTask(this)" value="New task"><i class="fa-solid fa-circle-plus margin"></i>New Task</button>
     </div>
 
 </body>

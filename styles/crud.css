@@ -48,10 +48,8 @@
     padding: 10px 15px;
     text-decoration: none;
     font-size: 17px;
-    border-style: solid;
-    border-color: #eeeeed;
+    border: thin solid #eeeeed;
     margin: 5px;
-    border-width: thin;
     border-radius: 5px;
 }
 
