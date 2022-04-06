@@ -98,7 +98,7 @@ body {
     color: red;
 }
 
-.heading {
+.main-heading {
     margin: 50px 0;
     color: #eeeeed;
 }
@@ -168,6 +168,8 @@ html {
 }
 
 .form {
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
     padding: 25px 80px;
     width: 30%;
