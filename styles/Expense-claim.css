@@ -1,0 +1,175 @@
+body {
+    display: flex;
+    background-color: #B7CADB;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.button {
+    width: auto;
+    padding: 14px 20px;
+    margin: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.expense-claim-form {
+    padding: 50px;
+}
+
+.expense-claim-form-container {
+    display: flex;
+    border-radius: 10px;
+    background-color: #334257;
+    color: white;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.expense-claim-form {
+    width: inherit
+}
+
+.input {
+    width: fit-content;
+    padding: 12px 20px;
+    margin: 10px 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+html {
+    height: 100%;
+}
+
+.main-div {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-nav {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px;
+    margin: 50px;
+    height: fit-content;
+}
+
+label {
+    margin: 0 15px;
+}
+
+.nav-item {
+    float: left;
+    text-align: center;
+    margin: 14px 16px;
+    padding: 14px 16px;
+    font-size: 17px;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.nav-item:hover {
+    background-color: black;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.active {
+    background-color: black;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.dual {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.viewData {
+    width: 100%;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #04293A;
+    color: white;
+    margin: 25px;
+    padding: 25px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    width: 300px;
+}
+
+.card-holder {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: larger;
+    margin: 25px;
+    height: 75vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.card-item {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttons {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+.buttons:hover {
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+.yellow {
+    background-color: green;
+    color: white;
+}
+
+.expense-claim-form-footer {
+    display: flex;
+    justify-content: end;
+}
+
+.error-feild {
+    margin: 10px 15px;
+    color: red;
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Expense-claim.css">
+    <script src="https://kit.fontawesome.com/adf82fbd7e.js" crossorigin="anonymous"></script>
+    <script src="../scripts/Expense-claim.js"></script>
+    <title>Expense claim</title>
+</head>
+
+<body onload="paymentType()">
+    <div class="side-nav" id="sidenav">
+        <div style="display: flex;flex-direction: column;">
+            <a class="nav-item" onclick="createData()">Create</a>
+            <a class="nav-item" onclick="cardData()">View</a>
+            <a class="nav-item">Accepted</a>
+            <a class="nav-item">Rejected</a>
+            <a class="nav-item">Pending</a>
+        </div>
+    </div>
+    <div class="main-div">
+        <div class="expense-claim-form-container" id="expenseClaimFormContainer" style="display:none">
+            <form class="expense-claim-form" id="expenseClaimForm" onsubmit="return false;">
+                <div class="expense-claim-form-header" id="expenseClaimFormHeader">
+                    <h2 style="float: top;">Expense Claim Details</h2>
+                </div>
+                <div class="expense-claim-form-body" id="expenseClaimFormBody">
+                    <div><label for="employee">Employee</label></div>
+                    <div>
+                        <select class="input" id="employee" name="employee" onblur="formValidate(this.id)" required>
+                            <option value="">- - Select - -</option>
+                    </select>
+                    </div>
+                    <div>
+                        <label for="expenseName">Expense Name</label>
+                    </div>
+                    <div>
+                        <input class="input" id="expenseName" name="expenseName" type="text" oninput="formValidate(this.id)" required>
+                    </div>
+                    <div class="payment-type-and-method dual" id="paymentTypeAndMethod">
+                        <div>
+                            <div><label for="payment-type">Payment Type</label></div>
+                            <div><select class="input" id="paymentType" name="paymentType" onblur="formValidate(this.id)" required>
+                                <option value="">- - Select - -</option>
+                            </select></div>
+                        </div>
+                        <div>
+                            <div><label for="payment-method">Payment Method</label></div>
+                            <div><select class="input" id="paymentMethod" name="payment-method" onblur="formValidate(this.id)" required>
+                                <option value="">- - Select - -</option>
+                            </select></div>
+                        </div>
+                    </div>
+                    <div class="payment-date-and-payout dual" id="paymentDateAndpayout">
+                        <div>
+                            <div><label for="payment-date">Payment Date</label></div>
+                            <input class="input" id="paymentDate" name="paymentDate" type="date" oninput="formValidate(this.id)" required>
+                        </div>
+                        <div>
+                            <div><label for="payout">Payout with Salary</label></div>
+                            <div><input class="input" id="payout" type="checkbox" oninput="formValidate(this.id)"></div>
+                        </div>
+                    </div>
+                    <div class="notes" id="notes">
+                        <div>
+                            <div><label for="notes">Notes</label></div>
+                            <input class="input" id="notes" name="notes" type="text" oninput="formValidate(this.id)">
+                        </div>
+                    </div>
+                    <div class="total-and-currency dual" id="totalAndCurrency">
+                        <div>
+                            <div><label for="total">Total</label></div>
+                            <input class="input" id="paymentDate" name="paymentDate" type="number" oninput="formValidate(this.id)" required>
+                        </div>
+                        <div>
+                            <div><label for="currencies">Currency</label></div>
+                            <div><select class="input" id="currencies" name="currencies" onblur="formValidate(this.id)" required>
+                                <option value="">- - Select - -</option>
+                            </select></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="expense-claim-form-footer" id="expenseClaimFormFooter">
+                    <button class="button green" id="create" onclick="formValidate(all,this.id)" disabled>Create</button>
+                    <button class="button yellow" id="edit" onclick="editData()" disabled>Edit</button>
+                    <button class="button red" id="cancel" type="reset">Cancel</button>
+                </div>
+                <span id="id" style="display: none;"></span>
+            </form>
+        </div>
+        <div class="viewData" id="viewData">
+            <div class="card" id="card" style="display: none;">
+                <div class="card-item">Expense Name&emsp;:&emsp;<span id="expenseName"></span></div>
+                <div class="card-item">Employee&emsp;&emsp;&emsp;:&emsp;<span id="employeeName"></span></div>
+                <div class="card-item">Payment Date&emsp;&nbsp;&#09;:&emsp;<span id="paymentDate"></span></div>
+                <div class="card-item">Notes&emsp;&emsp;&emsp;&emsp;&ensp;&#09;:&emsp;<span id="notes"></span></div>
+                <div class="card-item">Amount&emsp;&emsp;&emsp;&ensp;&#09;:&emsp;<span id="total"></span></div>
+                <div><button class="buttons green" onclick="showForm(this.parentElement.parentElement.id)">Edit</button><button class="buttons red" onclick="deleteData(this.parentElement.parentElement.id)">Delete</button></div>
+            </div>
+            <div class="card-holder" id="cardHolder">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
