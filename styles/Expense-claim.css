@@ -114,6 +114,7 @@ label {
     flex-shrink: 0;
     border-radius: 15px;
     width: 300px;
+    height: fit-content;
 }
 
 .card-holder {

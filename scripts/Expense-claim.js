@@ -1,4 +1,4 @@
-document.cookie = "AccessToken=eyJraWQiOiJhZm5VVTd6STJzdk1ISEcydkl3eE44enlxU0NXck1NNSttUDUxYTZcL0Uydz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjNzRjYjg0OS0xNDQ5LTQ0YWUtYmU3YS0wNGU0OTRhNDczYmIiLCJhdWQiOiI3dDgwNzYzN3Q5bmdwYmI1ZHZrOWIwbXV0NSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6IjBkMTg4M2RlLTMyMDctNDhmMi1iMjM5LTk4ZGZiMDNiZjBkNSIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjQ5MzkxNDgxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtbm9ydGgtMS5hbWF6b25hd3MuY29tXC9ldS1ub3J0aC0xXzZzMGFMblZFRSIsImNvZ25pdG86dXNlcm5hbWUiOiJjNzRjYjg0OS0xNDQ5LTQ0YWUtYmU3YS0wNGU0OTRhNDczYmIiLCJleHAiOjE2NDk0MTYxNzUsImlhdCI6MTY0OTQxMjU3NSwiZW1haWwiOiJnb3V0aGFtQHppcml1cy5pbiJ9.OiIutGSkdrOxJ6kCD1ZUChUzzdRouY8cWns5V967NsGmX-IKbQkzxe7lGBimQICkJLG4X4BgBeht2g3-VieMg-ifUCyUCXyIUgExNaSTKzuRp_SCyoJpkkqlyJO3-sUEeeD5BgX9MmbTL5e3x__m7o-wqGpe3y0tyfJUGfkyEohAkJYrWi7pGhccO1Scoi8l1isOPhb7Btqipx6Mkzw2JZni4kNih2XsZR5_H4cM-QiF9H-CjzLkfB8ci-op9PPKuEClxebQzVFhyiWB_LZf4vmZmz2cQKsRWc1WhPIXZkcKjsqv29x5HbCsrPMsaEAWDa3VvbKilOeR3FwJGXwZJA"
+document.cookie = "AccessToken=eyJraWQiOiJhZm5VVTd6STJzdk1ISEcydkl3eE44enlxU0NXck1NNSttUDUxYTZcL0Uydz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjNzRjYjg0OS0xNDQ5LTQ0YWUtYmU3YS0wNGU0OTRhNDczYmIiLCJhdWQiOiI3dDgwNzYzN3Q5bmdwYmI1ZHZrOWIwbXV0NSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6Ijk5ZmExNmJkLTZlMGMtNGY5YS1hMjcxLWRkYjQ0NWM2NzBjYSIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjQ5ODM0MTMxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtbm9ydGgtMS5hbWF6b25hd3MuY29tXC9ldS1ub3J0aC0xXzZzMGFMblZFRSIsImNvZ25pdG86dXNlcm5hbWUiOiJjNzRjYjg0OS0xNDQ5LTQ0YWUtYmU3YS0wNGU0OTRhNDczYmIiLCJleHAiOjE2NDk4Mzc3MzEsImlhdCI6MTY0OTgzNDEzMSwiZW1haWwiOiJnb3V0aGFtQHppcml1cy5pbiJ9.R580LF99qt13mFQYayIY5XcDY3Cs4CRmsV9qz0ehRy02OgiGmu3zGqAm-WkRVtYk6x0f9E32JxIzPTeURCZey_fFGDk_ANow038blfkMvb5I6h1p-FHR4HlR1rNhYve54GUM7-os7tEcARs4ZpOXh1p1EzAoq69WqpUN44BSgCBYWcC0eqIoHKShosqNsAfYGjcEWVw-YielRbx5oinJ9vZlppY2HzRXjse4zm5L_6WpnitLsuDIfwxAta7Wx_0L7i6VdGheQDMClV1FiZkuP6TG29SusiSHCVn_Aa7NKb9HAXZzey6J7S0SaUaFshmemEkz8cUjwIt2rbnlZhAnjw"
 
 var paymymentType = {
     "ledgerTemplates": [{
@@ -39,6 +39,7 @@ function postData() {
             json = JSON.parse(this.responseText)
             if (this.status == 200) {
                 alert("Data created sucessfully!!!")
+                cardData()
                 document.forms[0].reset()
             }
         }
@@ -233,38 +234,36 @@ function createData() {
 
 function formValidate(feildId, elementId) {
     if (!document.forms[0].checkValidity()) {
-        if (feildId == "all") {
-            var formElements = document.forms[0].elements
-            for (let index = 0; index < formElements.length; index++) {
-                var tag = document.createElement("p");
-                tag.className = 'error-feild'
-                var text;
-                feildId == "all" ? feildIdCheck = formElements[index].id : feildIdCheck = elementId;
-                if (formElements[index].parentElement.getElementsByTagName('p')[0] == undefined && formElements[index].id == feildIdCheck) {
-                    formElements[index].validity.customError = formElements[index].value == "" ? true : false
-                    if (formElements[index].validity.valueMissing) {
-                        text = document.createTextNode("Feild is required can't be empty");
-                        tag.appendChild(text);
-                        formElements[index].parentElement.appendChild(tag);
-                    } else if (formElements[index].validity.customError) {
-                        text = document.createTextNode("Feild is required can't be empty");
-                        tag.appendChild(text);
-                        formElements[index].parentElement.appendChild(tag);
-                    } else if (formElements[index].validity.patternMismatch) {
-                        text = document.createTextNode("Invalid Input for email format 'abc@gmail.com'");
-                        tag.appendChild(text);
-                        formElements[index].parentElement.appendChild(tag);
-                    }
-
-
-                } else if (formElements[index].id == feildIdCheck && formElements[index].parentElement.getElementsByTagName('p')[0] != undefined) {
-                    formElements[index].parentElement.getElementsByTagName('p')[0].remove()
+        var formElements = document.forms[0].elements
+        for (let index = 0; index < formElements.length; index++) {
+            var tag = document.createElement("p");
+            tag.className = 'error-feild'
+            var text;
+            feildId == "all" ? feildIdCheck = formElements[index].id : feildIdCheck = elementId;
+            if (formElements[index].parentElement.getElementsByTagName('p')[0] == undefined && formElements[index].id == feildIdCheck) {
+                formElements[index].validity.customError = formElements[index].value == "" ? true : false
+                if (formElements[index].validity.valueMissing) {
+                    text = document.createTextNode("Feild is required can't be empty");
+                    tag.appendChild(text);
+                    formElements[index].parentElement.appendChild(tag);
+                } else if (formElements[index].validity.customError) {
+                    text = document.createTextNode("Feild is required can't be empty");
+                    tag.appendChild(text);
+                    formElements[index].parentElement.appendChild(tag);
+                } else if (formElements[index].validity.patternMismatch) {
+                    text = document.createTextNode("Invalid Input for email format 'abc@gmail.com'");
+                    tag.appendChild(text);
+                    formElements[index].parentElement.appendChild(tag);
                 }
 
+
+            } else if (formElements[index].id == feildIdCheck && formElements[index].parentElement.getElementsByTagName('p')[0] != undefined) {
+                formElements[index].parentElement.getElementsByTagName('p')[0].remove()
             }
-            document.getElementById('create').disabled = !document.forms[0].checkValidity()
-            document.getElementById('edit').disabled = !document.forms[0].checkValidity()
+
         }
+        document.getElementById('create').disabled = !document.forms[0].checkValidity()
+        document.getElementById('edit').disabled = !document.forms[0].checkValidity()
     } else {
         document.getElementById('create').disabled = !document.forms[0].checkValidity()
         document.getElementById('edit').disabled = !document.forms[0].checkValidity()
@@ -277,4 +276,8 @@ function formValidate(feildId, elementId) {
         }
 
     }
+}
+
+function convertFloat(element) {
+    element.value = parseFloat(element.value).toFixed(2);
 }

@@ -73,7 +73,7 @@
                     <div class="total-and-currency dual" id="totalAndCurrency">
                         <div>
                             <div><label for="total">Total</label></div>
-                            <input class="input" id="paymentDate" name="paymentDate" type="number" oninput="formValidate(undefined,this.id)" required>
+                            <input class="input" id="amount" name="amount" type="number" placeholder="0.00" oninput="formValidate(undefined,this.id)" onblur="convertFloat(this)" required>
                         </div>
                         <div>
                             <div><label for="currencies">Currency</label></div>
