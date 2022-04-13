@@ -232,32 +232,39 @@ function createData() {
 }
 
 function formValidate(feildId, elementId) {
-    if (feildId == "all" && !document.forms[0].checkValidity()) {
-        var formElements = document.forms[0].elements
-        var tag = document.createElement("p");
-        var text;
-        tag.className = 'error-feild'
-        for (let index = 0; index < formElements.length; index++) {
-            feildId == "all" ? feildIdCheck = formElements[index].id : feildIdCheck = feildId;
-            if (formElements[index].parentElement.getElementsByTagName('p')[0] == undefined && formElements[index].id == feildIdCheck) {
-                if (formElements[index].validity.valueMissing) {
-                    text = document.createTextNode("Feild is required can't be empty");
-                    tag.appendChild(text);
-                    formElements[index].parentElement.appendChild(tag);
-                } else if (formElements[index].validity.patternMismatch) {
-                    text = document.createTextNode("Invalid Input for email format 'abc@gmail.com'");
-                    tag.appendChild(text);
-                    formElements[index].parentElement.appendChild(tag);
+    if (!document.forms[0].checkValidity()) {
+        if (feildId == "all") {
+            var formElements = document.forms[0].elements
+            for (let index = 0; index < formElements.length; index++) {
+                var tag = document.createElement("p");
+                tag.className = 'error-feild'
+                var text;
+                feildId == "all" ? feildIdCheck = formElements[index].id : feildIdCheck = elementId;
+                if (formElements[index].parentElement.getElementsByTagName('p')[0] == undefined && formElements[index].id == feildIdCheck) {
+                    formElements[index].validity.customError = formElements[index].value == "" ? true : false
+                    if (formElements[index].validity.valueMissing) {
+                        text = document.createTextNode("Feild is required can't be empty");
+                        tag.appendChild(text);
+                        formElements[index].parentElement.appendChild(tag);
+                    } else if (formElements[index].validity.customError) {
+                        text = document.createTextNode("Feild is required can't be empty");
+                        tag.appendChild(text);
+                        formElements[index].parentElement.appendChild(tag);
+                    } else if (formElements[index].validity.patternMismatch) {
+                        text = document.createTextNode("Invalid Input for email format 'abc@gmail.com'");
+                        tag.appendChild(text);
+                        formElements[index].parentElement.appendChild(tag);
+                    }
+
+
+                } else if (formElements[index].id == feildIdCheck && formElements[index].parentElement.getElementsByTagName('p')[0] != undefined) {
+                    formElements[index].parentElement.getElementsByTagName('p')[0].remove()
                 }
 
-
-            } else if (formElements[index].id == feildIdCheck && formElements[index].parentElement.getElementsByTagName('p')[0] != undefined) {
-                formElements[index].parentElement.getElementsByTagName('p')[0].remove()
             }
-
+            document.getElementById('create').disabled = !document.forms[0].checkValidity()
+            document.getElementById('edit').disabled = !document.forms[0].checkValidity()
         }
-        document.getElementById('create').disabled = !document.forms[0].checkValidity()
-        document.getElementById('edit').disabled = !document.forms[0].checkValidity()
     } else {
         document.getElementById('create').disabled = !document.forms[0].checkValidity()
         document.getElementById('edit').disabled = !document.forms[0].checkValidity()
