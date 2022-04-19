@@ -49,12 +49,14 @@ function postData() {
     var postRequestForCreateExpense = new XMLHttpRequest()
     postRequestForCreateExpense.onreadystatechange = function() {
         if (this.readyState == 4) {
-            json = JSON.parse(this.responseText)
+            json = JSON.parse(this.responseText == "" ? '{"message" : "Unable to proccess the request"}' : this.responseText)
             if (this.status == 200) {
                 alert("Data created sucessfully!!!")
                 showCards()
                 setActive(document.getElementById("navItemView"))
                 document.forms[0].reset()
+            } else {
+                alert(json.message)
             }
         }
     };
@@ -102,9 +104,9 @@ function showCards() {
     var postRequestForCardView = new XMLHttpRequest()
     postRequestForCardView.onreadystatechange = function() {
         if (this.readyState == 4) {
+            var response = JSON.parse(this.responseText == "" ? '{"message" : "Unable to proccess the request"}' : this.responseText)
             if (this.status == 200) {
                 document.getElementById("cardHolder").innerHTML = ""
-                var response = JSON.parse(this.responseText)
                 for (var cards = 0; cards < response.expenses.length; cards++) {
                     var card = document.getElementById("card").cloneNode(true);
                     var spanElements = card.getElementsByTagName("span")
@@ -113,13 +115,14 @@ function showCards() {
                     spanElements[2].innerHTML += convertDate(response["expenses"][cards]["invoiceDate"].split("T")[0])
                     spanElements[3].innerHTML += response["expenses"][cards]["notes"].trim() == "" ? "N/A" : response["expenses"][cards]["notes"]
                     spanElements[3].setAttribute("title", response["expenses"][cards]["notes"].trim() == "" ? "N/A" : response["expenses"][cards]["notes"])
-                    spanElements[4].innerHTML += convertCurrencyConvertsion(response["expenses"][cards]["amount"])
+                    spanElements[4].innerHTML += convertAmount(response["expenses"][cards]["amount"])
                     spanElements[4].innerHTML += "&nbsp" + response["expenses"][cards]["currency"]["currencyCode"]
                     card.style.display = "flex"
                     card.id = response["expenses"][cards]["id"]
                     document.getElementById("cardHolder").append(card)
                 }
-                console.log(response);
+            } else {
+                alert(response.message)
             }
         }
     };
@@ -138,9 +141,12 @@ function deleteData(elementId) {
         var deleteRequest = new XMLHttpRequest()
         deleteRequest.onreadystatechange = function() {
             if (this.readyState == 4) {
+                json = JSON.parse(this.responseText == "" ? '{"message" : "Unable to proccess the request"}' : this.responseText)
                 if (this.status == 200) {
                     alert("Deleted Sucessfully")
                     showCards()
+                } else {
+                    alert(json.message)
                 }
             }
         };
@@ -159,13 +165,16 @@ function editData() {
     var putRequest = new XMLHttpRequest()
     putRequest.onreadystatechange = function() {
         if (this.readyState == 4) {
-            json = JSON.parse(this.responseText)
+            json = JSON.parse(this.responseText == "" ? '{"message" : "Unable to proccess the request"}' : this.responseText)
             if (this.status == 200) {
                 var response = JSON.parse(this.responseText)
                 showCards()
                 alert("Data updated successfully")
                 document.forms[0].reset()
+                document.getElementById("edit").disabled = true
                 console.log(response);
+            } else {
+                alert(json.message)
             }
         }
     };
@@ -203,8 +212,8 @@ function editData() {
 function getSetInduvidualData(elementId) {
     var getRequest = new XMLHttpRequest()
     getRequest.onreadystatechange = function() {
-        if (this.readyState != 4) {
-            json = JSON.parse(this.responseText)
+        if (this.readyState == 4) {
+            json = JSON.parse(this.responseText == "" ? '{"message" : "Unable to proccess the request"}' : this.responseText)
             if (this.status == 200) {
                 var formElements = document.getElementById('expenseClaimForm').getElementsByClassName('input');
                 formElements[0].value = json["expense"]["employee"]["userId"]
@@ -214,11 +223,12 @@ function getSetInduvidualData(elementId) {
                 formElements[4].value = json["expense"]["invoiceDate"].split("T")[0]
                 formElements[5].checked = json["expense"]["payoutWithSalary"]
                 formElements[6].value = json["expense"]["notes"]
-                formElements[7].value = json["expense"]["amount"]
+                formElements[7].value = convertAmount(json["expense"]["amount"])
                 formElements[8].value = json["expense"]["currency"]["currencyCode"]
+                formValidate(true, document.getElementById("edit"))
                 document.getElementById("id").innerText = elementId
             } else {
-                alert(json.messsage)
+                alert(json.message)
             }
         }
     };
@@ -255,7 +265,7 @@ function formValidate(feildId, elementId) {
             var formElements = document.forms[0].elements
             for (const element of formElements) {
                 var tag = element.parentElement.getElementsByClassName("error-feild")[0]
-                if (element.checkValidity()) {
+                if (element.checkValidity() && element.tagName != "BUTTON") {
                     tag.innerHTML = "&nbsp;"
                 } else {
                     element.validity.customError = element.value == "" ? true : false
@@ -269,7 +279,7 @@ function formValidate(feildId, elementId) {
             }
         } else {
             var tag = elementId.parentElement.getElementsByClassName("error-feild")[0]
-            if (elementId.checkValidity()) {
+            if (elementId.checkValidity() && elementId.tagName != "BUTTON") {
                 tag.innerHTML = "&nbsp;"
             } else {
                 tag.innerText = elementId.validationMessage
@@ -279,9 +289,11 @@ function formValidate(feildId, elementId) {
         if (elementId.id != undefined) {
             if (elementId.id == "create") {
                 postData()
-            } else if (elementId.id == "edit") {
+            } else {
                 editData()
             }
+        } else {
+            return
         }
 
     }
@@ -289,11 +301,11 @@ function formValidate(feildId, elementId) {
     document.getElementById('edit').disabled = !document.forms[0].checkValidity()
 }
 
-function convertFloat(element) {
-    element.value = convertCurrencyConvertsion(element.value);
+function setAmount(element) {
+    element.value = convertAmount(element.value);
 }
 
-function convertCurrencyConvertsion(amount) {
+function convertAmount(amount) {
     return parseFloat(amount).toFixed(2);
 }
 
