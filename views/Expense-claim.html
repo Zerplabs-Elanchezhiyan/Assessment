@@ -39,7 +39,7 @@
                         <label for="expenseName">Expense Name<abbr title="This field is mandatory" class="required">*</abbr></label>
                     </div>
                     <div>
-                        <input class="input" id="expenseName" name="expenseName" type="text" oninput="formValidate(false,this)" onblur="formValidate(false,this)" required>
+                        <input class="input" id="expenseName" name="expenseName" type="text" minlength="10" oninput="formValidate(false,this)" onblur="formValidate(false,this)" required>
                         <div class="error-feild">&nbsp;</div>
                     </div>
                     <div class="payment-type-and-method dual" id="paymentTypeAndMethod">
@@ -78,7 +78,7 @@
                         <div>
                             <div><label for="notes">Notes</label></div>
                             <div>
-                                <textarea class="input" id="notes" name="notes" style="resize: none;" oninput="formValidate(false,this)" onblur="formValidate(false,this)"></textarea>
+                                <textarea class="input" id="notes" name="notes" style="resize: none;" maxlength="250" oninput="formValidate(false,this)" onblur="formValidate(false,this)"></textarea>
                                 <div class="error-feild">&nbsp;</div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="expense-claim-form-footer" id="expenseClaimFormFooter">
                     <button type="button" class="button green" id="create" onclick="formValidate(true,this)">Create</button>
-                    <button type="button" class="button green" id="edit" onclick="editData()" disabled>Save</button>
+                    <button type="button" class="button green" id="edit" onclick="formValidate(true,this)">Save</button>
                     <button class="button red" id="cancel" type="reset" onclick="cancelRedirection(this)">Cancel</button>
                 </div>
                 <span id="id" style="display: none;"></span>

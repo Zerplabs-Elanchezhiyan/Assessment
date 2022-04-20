@@ -209,7 +209,7 @@ function editData() {
     putRequest.send(json);
 }
 
-function getSetInduvidualData(elementId) {
+async function getSetInduvidualData(elementId) {
     var getRequest = new XMLHttpRequest()
     getRequest.onreadystatechange = function() {
         if (this.readyState == 4) {
@@ -225,8 +225,8 @@ function getSetInduvidualData(elementId) {
                 formElements[6].value = json["expense"]["notes"]
                 formElements[7].value = convertAmount(json["expense"]["amount"])
                 formElements[8].value = json["expense"]["currency"]["currencyCode"]
-                formValidate(true, document.getElementById("edit"))
                 document.getElementById("id").innerText = elementId
+                formValidate(true, undefined)
             } else {
                 alert(json.message)
             }
@@ -258,38 +258,40 @@ function showCreateForm() {
     document.forms[0].reset()
 }
 
-function formValidate(feildId, elementId) {
-
+function formValidate(validateWholeForm, ValidatingElement) {
     if (!document.forms[0].checkValidity()) {
-        if (feildId) {
+        if (validateWholeForm) {
             var formElements = document.forms[0].elements
             for (const element of formElements) {
                 var tag = element.parentElement.getElementsByClassName("error-feild")[0]
-                if (element.checkValidity() && element.tagName != "BUTTON") {
+                if (element.tagName == "BUTTON") {
+                    document.getElementById('create').disabled = !document.forms[0].checkValidity()
+                    document.getElementById('edit').disabled = !document.forms[0].checkValidity()
+                    return;
+                } else if (element.checkValidity()) {
                     tag.innerHTML = "&nbsp;"
                 } else {
-                    element.validity.customError = element.value == "" ? true : false
-                    if (element.validity.valueMissing) {
-                        tag.innerText = "Feild is required can't be Empty"
-                    } else if (element.validity.customError) {
-                        tag.innerText = "Feild is required can't be default"
-
-                    }
+                    tag.innerText = element.validationMessage
                 }
             }
         } else {
-            var tag = elementId.parentElement.getElementsByClassName("error-feild")[0]
-            if (elementId.checkValidity() && elementId.tagName != "BUTTON") {
+            var tag = ValidatingElement.parentElement.getElementsByClassName("error-feild")[0]
+            if (ValidatingElement.tagName == "BUTTON") {
+                document.getElementById('create').disabled = !document.forms[0].checkValidity()
+                document.getElementById('edit').disabled = !document.forms[0].checkValidity()
+                return;
+            } else if (ValidatingElement.checkValidity()) {
                 tag.innerHTML = "&nbsp;"
             } else {
-                tag.innerText = elementId.validationMessage
+                tag.innerText = ValidatingElement.validationMessage
             }
         }
     } else {
-        if (elementId.id != undefined) {
-            if (elementId.id == "create") {
+        errorClear();
+        if (ValidatingElement != undefined) {
+            if (ValidatingElement.id == "create") {
                 postData()
-            } else {
+            } else if (ValidatingElement.id == "edit") {
                 editData()
             }
         } else {
