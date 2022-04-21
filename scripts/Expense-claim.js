@@ -1,4 +1,5 @@
 document.cookie = "AccessToken=eyJraWQiOiJhZm5VVTd6STJzdk1ISEcydkl3eE44enlxU0NXck1NNSttUDUxYTZcL0Uydz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjNzRjYjg0OS0xNDQ5LTQ0YWUtYmU3YS0wNGU0OTRhNDczYmIiLCJhdWQiOiI3dDgwNzYzN3Q5bmdwYmI1ZHZrOWIwbXV0NSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJldmVudF9pZCI6Ijk5ZmExNmJkLTZlMGMtNGY5YS1hMjcxLWRkYjQ0NWM2NzBjYSIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjQ5ODM0MTMxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtbm9ydGgtMS5hbWF6b25hd3MuY29tXC9ldS1ub3J0aC0xXzZzMGFMblZFRSIsImNvZ25pdG86dXNlcm5hbWUiOiJjNzRjYjg0OS0xNDQ5LTQ0YWUtYmU3YS0wNGU0OTRhNDczYmIiLCJleHAiOjE2NDk4Mzc3MzEsImlhdCI6MTY0OTgzNDEzMSwiZW1haWwiOiJnb3V0aGFtQHppcml1cy5pbiJ9.R580LF99qt13mFQYayIY5XcDY3Cs4CRmsV9qz0ehRy02OgiGmu3zGqAm-WkRVtYk6x0f9E32JxIzPTeURCZey_fFGDk_ANow038blfkMvb5I6h1p-FHR4HlR1rNhYve54GUM7-os7tEcARs4ZpOXh1p1EzAoq69WqpUN44BSgCBYWcC0eqIoHKShosqNsAfYGjcEWVw-YielRbx5oinJ9vZlppY2HzRXjse4zm5L_6WpnitLsuDIfwxAta7Wx_0L7i6VdGheQDMClV1FiZkuP6TG29SusiSHCVn_Aa7NKb9HAXZzey6J7S0SaUaFshmemEkz8cUjwIt2rbnlZhAnjw"
+    // Setting Dropdown in induvidual feilds
 loadData("http://localhost/ec/employees", "employee", "dropdownList", "value", "id")
 loadData("http://localhost/ec/paymentMethod", "paymentMethod", "dropdownList", "value", "id")
 loadData("http://localhost/ec/currencies", "currencies", "currencyList", "currencyName", "currencyCode")
@@ -13,14 +14,141 @@ var paymentType = {
     }]
 }
 
+// For setting maximum date
 function setMaxDate() { document.getElementById("paymentDate").setAttribute("max", new Date().toISOString().split("T")[0]); }
 
+// For converting date to required format
 function convertDate(stringDate) {
     var date = new Date(stringDate).getDate()
     var month = new Date(stringDate).getMonth() + 1
     var year = new Date(stringDate).getFullYear()
     return month + "/" + date + "/" + year
 }
+
+// For setting payment type dropdown value
+function paymentTypeFunction() {
+    document.getElementById("paymentType").innerHTML += "<option value=" + paymentType["ledgerTemplates"][0]["id"] + ">" + paymentType["ledgerTemplates"][0]["value"] + "</option>"
+}
+
+// For showing form for edit data
+function showFormForEdit(elementId) {
+    document.getElementById("edit").style.display = "block"
+    document.getElementById("create").style.display = "none"
+    document.getElementById("expenseClaimFormContainer").style.display = "flex"
+    document.getElementById("viewData").style.display = "none"
+    document.forms[0].reset()
+    getSetInduvidualData(elementId)
+}
+
+// For showing form for creating data 
+function showCreateForm() {
+    document.getElementById("create").style.display = "block"
+    document.getElementById("edit").style.display = "none"
+    document.getElementById("expenseClaimFormContainer").style.display = "flex"
+    document.getElementById("viewData").style.display = "none"
+    errorClear()
+    document.forms[0].reset()
+}
+
+// For form validation
+
+function formValidate(validateWholeForm, ValidatingElement) {
+    if (!document.forms[0].checkValidity()) {
+        // Form validation for whole form
+        if (validateWholeForm) {
+            var formElements = document.forms[0].elements
+            for (const element of formElements) {
+                setAndClearError(element)
+            }
+        } else {
+            setAndClearError(ValidatingElement)
+        }
+    } else {
+        errorClear();
+        if (ValidatingElement != undefined) {
+            if (ValidatingElement.id == "create") {
+                postData()
+            } else if (ValidatingElement.id == "edit") {
+                editData()
+            }
+        } else {
+            return
+        }
+
+    }
+    document.getElementById('create').disabled = !document.forms[0].checkValidity()
+    document.getElementById('edit').disabled = !document.forms[0].checkValidity()
+}
+
+// For setting converted valid value in form 
+function setAmount(element) {
+    element.value = convertAmount(element.value);
+}
+
+// For converting amount to float 
+function convertAmount(amount) {
+    return parseFloat(amount).toFixed(2);
+}
+
+// For setting and clearing error in single feild
+function setAndClearError(element) {
+    (element)
+    var tag = element.parentElement.getElementsByClassName("error-feild")[0]
+    if (element.tagName == "BUTTON") {
+        document.getElementById('create').disabled = !document.forms[0].checkValidity()
+        document.getElementById('edit').disabled = !document.forms[0].checkValidity()
+        return;
+    } else if (element.checkValidity()) {
+        tag.innerHTML = "&nbsp;"
+    } else {
+        tag.innerText = element.validationMessage
+    }
+}
+
+// For clearing error feilds in form
+function errorClear() {
+    var formElements = document.forms[0].elements
+    for (const element of formElements) {
+        if (element.parentElement.getElementsByClassName('error-feild')[0] != undefined) {
+            element.parentElement.getElementsByClassName('error-feild')[0].innerHTML = "&nbsp;"
+        }
+    }
+}
+
+// For changing top navigation item class
+function setActive(element) {
+    var activeItem = document.getElementsByClassName("active")[0]
+    activeItem.className = activeItem.className.replace(" active", "")
+    element.className += " active"
+
+}
+
+// For clearing page for unused items
+function showNone() {
+    document.getElementById("expenseClaimFormContainer").style.display = "none"
+    document.getElementById("viewData").style.display = "none"
+}
+
+// Cancel redirection
+function cancelRedirection(element) {
+    if (element.parentElement.getElementsByTagName("button")[1].style.display != "none") {
+        showCards()
+    }
+    errorClear()
+    document.forms[0].reset()
+    document.getElementById("edit").disabled = true;
+}
+
+// Null check for api response
+function nullChecker(json, feildName, id) {
+    if (json != null && json.expense != null && json.expense[feildName] != null) {
+        if (!id) return json.expense[feildName];
+        return json.expense[feildName][id] != null ? json.expense[feildName][id] : ""
+    }
+    return ""
+}
+
+// AJAX GET Call definition for Dropdown from api
 
 function loadData(url, position, listName, valueName, idValue) {
     var getRequestForDropdown = new XMLHttpRequest()
@@ -44,6 +172,7 @@ function loadData(url, position, listName, valueName, idValue) {
     getRequestForDropdown.send()
 }
 
+// Function for AJAX POST call for creating data
 function postData() {
     var url = new URL("http://localhost/ec/expense")
     var postRequestForCreateExpense = new XMLHttpRequest()
@@ -91,10 +220,7 @@ function postData() {
 
 }
 
-function paymentTypeFunction() {
-    document.getElementById("paymentType").innerHTML += "<option value=" + paymentType["ledgerTemplates"][0]["id"] + ">" + paymentType["ledgerTemplates"][0]["value"] + "</option>"
-}
-
+// AJAX POST call for loading data in cards
 function showCards() {
     document.getElementById("expenseClaimFormContainer").style.display = "none"
     document.getElementById("viewData").style.display = "flex"
@@ -111,6 +237,7 @@ function showCards() {
                     var card = document.getElementById("card").cloneNode(true);
                     var spanElements = card.getElementsByTagName("span")
                     spanElements[0].innerHTML += response["expenses"][cards]["name"]
+                    spanElements[0].setAttribute("title", response["expenses"][cards]["name"].trim())
                     spanElements[1].innerHTML += response["expenses"][cards]["employee"]["name"]
                     spanElements[2].innerHTML += convertDate(response["expenses"][cards]["invoiceDate"].split("T")[0])
                     spanElements[3].innerHTML += response["expenses"][cards]["notes"].trim() == "" ? "N/A" : response["expenses"][cards]["notes"]
@@ -136,6 +263,8 @@ function showCards() {
     postRequestForCardView.send(json);
 }
 
+// AJAX DELETE call for deleting data in api
+
 function deleteData(elementId) {
     if (confirm("Are you sure you want to delete this?")) {
         var deleteRequest = new XMLHttpRequest()
@@ -158,6 +287,8 @@ function deleteData(elementId) {
         deleteRequest.send()
     }
 }
+
+// AJAX PUT call for editing data in api
 
 function editData() {
     var elementId = document.getElementById("id").innerText
@@ -209,22 +340,25 @@ function editData() {
     putRequest.send(json);
 }
 
-async function getSetInduvidualData(elementId) {
+// AJAX GET call for getting induvidial data data in api
+
+function getSetInduvidualData(elementId) {
     var getRequest = new XMLHttpRequest()
     getRequest.onreadystatechange = function() {
         if (this.readyState == 4) {
             json = JSON.parse(this.responseText == "" ? '{"message" : "Unable to proccess the request"}' : this.responseText)
             if (this.status == 200) {
+                // Setting feild values from response
                 var formElements = document.getElementById('expenseClaimForm').getElementsByClassName('input');
-                formElements[0].value = json["expense"]["employee"]["userId"]
-                formElements[1].value = json["expense"]["name"]
-                formElements[2].value = json["expense"]["paymentType"]["id"]
-                formElements[3].value = json["expense"]["paymentMethod"]["id"]
-                formElements[4].value = json["expense"]["invoiceDate"].split("T")[0]
+                formElements[0].value = nullChecker(json, "employee", "userId")
+                formElements[1].value = nullChecker(json, "name", false)
+                formElements[2].value = nullChecker(json, "paymentType", "id")
+                formElements[3].value = nullChecker(json, "paymentMethod", "id")
+                formElements[4].value = nullChecker(json, "invoiceDate", false).split("T")[0]
                 formElements[5].checked = json["expense"]["payoutWithSalary"]
-                formElements[6].value = json["expense"]["notes"]
-                formElements[7].value = convertAmount(json["expense"]["amount"])
-                formElements[8].value = json["expense"]["currency"]["currencyCode"]
+                formElements[6].value = nullChecker(json, "notes", false)
+                formElements[7].value = convertAmount(nullChecker(json, "amount", false))
+                formElements[8].value = nullChecker(json, "currency", "currencyCode")
                 document.getElementById("id").innerText = elementId
                 formValidate(true, undefined)
             } else {
@@ -238,108 +372,4 @@ async function getSetInduvidualData(elementId) {
     getRequest.setRequestHeader("authorization", "Bearer " + document.cookie.split("=")[1])
     getRequest.setRequestHeader("companyid", "14")
     getRequest.send()
-}
-
-function showFormForEdit(elementId) {
-    document.getElementById("edit").style.display = "block"
-    document.getElementById("create").style.display = "none"
-    document.getElementById("expenseClaimFormContainer").style.display = "flex"
-    document.getElementById("viewData").style.display = "none"
-    document.forms[0].reset()
-    getSetInduvidualData(elementId)
-}
-
-function showCreateForm() {
-    document.getElementById("create").style.display = "block"
-    document.getElementById("edit").style.display = "none"
-    document.getElementById("expenseClaimFormContainer").style.display = "flex"
-    document.getElementById("viewData").style.display = "none"
-    errorClear()
-    document.forms[0].reset()
-}
-
-function formValidate(validateWholeForm, ValidatingElement) {
-    if (!document.forms[0].checkValidity()) {
-        if (validateWholeForm) {
-            var formElements = document.forms[0].elements
-            for (const element of formElements) {
-                var tag = element.parentElement.getElementsByClassName("error-feild")[0]
-                if (element.tagName == "BUTTON") {
-                    document.getElementById('create').disabled = !document.forms[0].checkValidity()
-                    document.getElementById('edit').disabled = !document.forms[0].checkValidity()
-                    return;
-                } else if (element.checkValidity()) {
-                    tag.innerHTML = "&nbsp;"
-                } else {
-                    tag.innerText = element.validationMessage
-                }
-            }
-        } else {
-            var tag = ValidatingElement.parentElement.getElementsByClassName("error-feild")[0]
-            if (ValidatingElement.tagName == "BUTTON") {
-                document.getElementById('create').disabled = !document.forms[0].checkValidity()
-                document.getElementById('edit').disabled = !document.forms[0].checkValidity()
-                return;
-            } else if (ValidatingElement.checkValidity()) {
-                tag.innerHTML = "&nbsp;"
-            } else {
-                tag.innerText = ValidatingElement.validationMessage
-            }
-        }
-    } else {
-        errorClear();
-        if (ValidatingElement != undefined) {
-            if (ValidatingElement.id == "create") {
-                postData()
-            } else if (ValidatingElement.id == "edit") {
-                editData()
-            }
-        } else {
-            return
-        }
-
-    }
-    document.getElementById('create').disabled = !document.forms[0].checkValidity()
-    document.getElementById('edit').disabled = !document.forms[0].checkValidity()
-}
-
-function setAmount(element) {
-    element.value = convertAmount(element.value);
-}
-
-function convertAmount(amount) {
-    return parseFloat(amount).toFixed(2);
-}
-
-
-function errorClear() {
-    var formElements = document.forms[0].elements
-    for (const element of formElements) {
-        if (element.parentElement.getElementsByClassName('error-feild')[0] != undefined) {
-            element.parentElement.getElementsByClassName('error-feild')[0].innerHTML = "&nbsp;"
-        }
-    }
-}
-
-function setActive(element) {
-    var activeItem = document.getElementsByClassName("active")[0]
-    activeItem.className = activeItem.className.replace(" active", "")
-    element.className += " active"
-
-}
-
-function showNone() {
-    document.getElementById("expenseClaimFormContainer").style.display = "none"
-    document.getElementById("viewData").style.display = "none"
-}
-
-function cancelRedirection(element) {
-    if (element.parentElement.getElementsByTagName("button")[1].style.display == "none") {
-        document.forms[0].reset()
-        errorClear()
-    } else {
-        showCards()
-        errorClear()
-        document.forms[0].reset()
-    }
 }

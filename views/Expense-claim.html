@@ -87,7 +87,7 @@
                         <div class="dual-item">
                             <div><label for="total">Total<abbr title="This field is mandatory" class="required">*</abbr></label></div>
                             <div>
-                                <input class="input" id="amount" name="amount" type="number" min="100" max="5000" step="0.01" aria-rowcount="5" oninput="formValidate(false,this)" onblur="convertFloat(this);formValidate(false,this)" required>
+                                <input class="input" id="amount" name="amount" type="number" min="100" max="5000" step="0.01" aria-rowcount="5" oninput="formValidate(false,this)" onblur="setAmount(this);formValidate(false,this)" required>
                                 <div class="error-feild">&nbsp;</div>
                             </div>
                         </div>
@@ -103,8 +103,8 @@
                     </div>
                 </div>
                 <div class="expense-claim-form-footer" id="expenseClaimFormFooter">
-                    <button type="button" class="button green" id="create" onclick="formValidate(true,this)">Create</button>
-                    <button type="button" class="button green" id="edit" onclick="formValidate(true,this)">Save</button>
+                    <button type="button" class="button green" id="create" onclick="formValidate(true,this);this.disabled=true;;">Create</button>
+                    <button type="button" class="button green" id="edit" onclick="formValidate(true,this);this.disabled=true;" disabled>Save</button>
                     <button class="button red" id="cancel" type="reset" onclick="cancelRedirection(this)">Cancel</button>
                 </div>
                 <span id="id" style="display: none;"></span>
