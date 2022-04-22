@@ -276,6 +276,7 @@ function deleteData(elementId) {
                     showCards()
                 } else {
                     alert(json.message)
+                    showCards()
                 }
             }
         };
@@ -363,6 +364,7 @@ function getSetInduvidualData(elementId) {
                 formValidate(true, undefined)
             } else {
                 alert(json.message)
+                showCards()
             }
         }
     };
