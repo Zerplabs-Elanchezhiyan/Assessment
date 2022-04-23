@@ -196,21 +196,21 @@ function postData() {
     var formElements = document.getElementById('expenseClaimForm').getElementsByClassName('input');
     var obj = {
         "attachments": [],
-        "amount": formElements[7].value,
+        "amount": document.getElementById("amount").value,
         "currency": {
-            "currencyCode": formElements[8].value
+            "currencyCode": document.getElementById("currencies").value
         },
-        "employee": { "userId": parseInt(formElements[0].value) },
+        "employee": { "userId": parseInt(document.getElementById("employee").value) },
         "paymentType": {
-            "id": parseInt(formElements[2].value)
+            "id": parseInt(document.getElementById("paymentType").value)
         },
         "paymentMethod": {
-            "id": parseInt(formElements[3].value)
+            "id": parseInt(document.getElementById("paymentMethod").value)
         },
-        "invoiceDate": formElements[4].value,
-        "name": formElements[1].value,
-        "notes": formElements[6].value,
-        "payoutWithSalary": formElements[5].checked,
+        "invoiceDate": document.getElementById("paymentDate").value,
+        "name": document.getElementById("expenseName").value,
+        "notes": document.getElementById("notes").value,
+        "payoutWithSalary": document.getElementById("payout").checked,
         "lineItems": [],
         "dimensions": []
     }
@@ -318,21 +318,21 @@ function editData() {
     var formElements = document.getElementById('expenseClaimForm').getElementsByClassName('input');
     var obj = {
         "attachments": [],
-        "amount": formElements[7].value,
+        "amount": document.getElementById("amount").value,
         "currency": {
-            "currencyCode": formElements[8].value
+            "currencyCode": document.getElementById("currencies").value
         },
-        "employee": { "userId": parseInt(formElements[0].value) },
+        "employee": { "userId": parseInt(document.getElementById("employee").value) },
         "paymentType": {
-            "id": parseInt(formElements[2].value)
+            "id": parseInt(document.getElementById("paymentType").value)
         },
         "paymentMethod": {
-            "id": parseInt(formElements[3].value)
+            "id": parseInt(document.getElementById("paymentMethod").value)
         },
-        "invoiceDate": formElements[4].value,
-        "name": formElements[1].value,
-        "notes": formElements[6].value,
-        "payoutWithSalary": formElements[5].checked,
+        "invoiceDate": document.getElementById("paymentDate").value,
+        "name": document.getElementById("expenseName").value,
+        "notes": document.getElementById("notes").value,
+        "payoutWithSalary": document.getElementById("payout").checked,
         "lineItems": [],
         "dimensions": []
     }
@@ -350,15 +350,15 @@ function getSetInduvidualData(elementId) {
             if (this.status == 200) {
                 // Setting feild values from response
                 var formElements = document.getElementById('expenseClaimForm').getElementsByClassName('input');
-                formElements[0].value = nullChecker(json, "employee", "userId")
-                formElements[1].value = nullChecker(json, "name", false)
-                formElements[2].value = nullChecker(json, "paymentType", "id")
-                formElements[3].value = nullChecker(json, "paymentMethod", "id")
-                formElements[4].value = nullChecker(json, "invoiceDate", false).split("T")[0]
-                formElements[5].checked = json["expense"]["payoutWithSalary"]
-                formElements[6].value = nullChecker(json, "notes", false)
-                formElements[7].value = convertAmount(nullChecker(json, "amount", false))
-                formElements[8].value = nullChecker(json, "currency", "currencyCode")
+                document.getElementById("employee").value = nullChecker(json, "employee", "userId")
+                document.getElementById("expenseName").value = nullChecker(json, "name", false)
+                document.getElementById("paymentType").value = nullChecker(json, "paymentType", "id")
+                document.getElementById("paymentMethod").value = nullChecker(json, "paymentMethod", "id")
+                document.getElementById("paymentDate").value = nullChecker(json, "invoiceDate", false).split("T")[0]
+                document.getElementById("payout").checked = json["expense"]["payoutWithSalary"]
+                document.getElementById("notes").value = nullChecker(json, "notes", false)
+                document.getElementById("amount").value = convertAmount(nullChecker(json, "amount", false))
+                document.getElementById("currencies").value = nullChecker(json, "currency", "currencyCode")
                 document.getElementById("id").innerText = elementId
                 formValidate(true, undefined)
             } else {
