@@ -92,7 +92,6 @@ function convertAmount(amount) {
 
 // For setting and clearing error in single feild
 function setAndClearError(element) {
-    (element)
     var tag = element.parentElement.getElementsByClassName("error-feild")[0]
     if (element.tagName == "BUTTON") {
         document.getElementById('create').disabled = !document.forms[0].checkValidity()
